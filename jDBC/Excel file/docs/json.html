@@ -1,0 +1,134 @@
+<html><head><TITLE>json.html - HXTT Excel JDBC Drivers for Microsoft Excel (MS Excel) 95/97/98/2000/2001/XP/2002/2003/2004/2007/2010/2013/2016 v5.0</TITLE><meta name="keywords"  content="Excel, JDBC, jdbc drivers, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<p><font size="+1"><b>Chapter 10. JavaScript Object Notation (JSON) Support</b></font></p>
+<p><b>Index</b>: </p>
+<ol>
+   <li><a href="#operator">json and jsonb Operators</a></li>
+   <li><a href="#function">JSON Functions</a></li>
+   <li><a href=#sample>JSON sample</a></li>
+
+
+ </ol>
+
+
+<p><A name=operator>json and jsonb Operators</a></p>
+<table  border="1">
+<p> </p>
+    
+<tr>
+<td>Operator</td>
+<td>Right Operand Type</td>
+<td>Description</td>
+<td>Example</td>
+<td>Example Result</td>
+</tr>
+
+<tr>
+<td>-&gt;</td>
+<td>int</td>
+<td>Get JSON array element (indexed from zero, negative integers
+count from the end)</td>
+<td>cast('[{"a":"foo"},{"b":"bar"},{"c":"baz"}]' as json)-&gt;2</td>
+<td>{"c":"baz"}</td>
+</tr>
+<tr>
+<td>-&gt;</td>
+<td>text</td>
+<td>Get JSON object field by key</td>
+<td>cast('{"a":
+{"b":"foo"}}' as json)-&gt;'a'</td>
+<td>{"b":"foo"}</td>
+</tr>
+<tr>
+<td>-&gt;&gt;</td>
+<td>int</td>
+<td>Get JSON array element as text</td>
+<td>cast('[1,2,3]' as json)-&gt;&gt;2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>-&gt;&gt;</td>
+<td>text</td>
+<td>Get JSON object field as text</td>
+<td>cast('{"a":1,"b":2}' as json)-&gt;&gt;'b'</td>
+<td>2</td>
+</tr>
+<tr>
+<td>#&gt;</td>
+<td>text[]</td>
+<td>Get JSON object at specified path</td>
+<td>cast('{"a": {"b":{"c":
+"foo"}}}' as json)#&gt;'{a,b}'</td>
+<td>{"c": "foo"}</td>
+</tr>
+<tr>
+<td>#&gt;&gt;</td>
+<td>text[]</td>
+<td>Get JSON object at specified path as text</td>
+<td>cast('{"a":[1,2,3],"b":[4,5,6]}' as json)#&gt;&gt;'{a,2}'</td>
+<td>3</td>
+</tr>
+
+</table>
+
+
+<p><A name=function>JSON Functions</a></p>
+<ol>
+    <li>CAST(expression AS  data_type): converts expression to another data type (json and jsonb).
+        For instance, cast('["guia","test"]' as json), cast('33.56' as json), and cast('[{"a":"foo"},{"b":"bar"},{"c":"baz"}]' as jsonb).<br>
+    </li>
+    <li>CONVERT(expression, data_type): converts expression to another data type (json and jsonb).
+       For instance, convert('["guia","test"]', json), convert('null',json), and convert('[{"a":"foo"},{"b":"bar"},{"c":"baz"}]' , json).<br>
+    </li>
+    <li>to_json(expression): Returns the value as json. Arrays and composites are converted (recursively) to arrays and objects; otherwise, if there is a cast from the type to json, the cast function will be used to perform the conversion; otherwise, a scalar value is produced. For any scalar type other than a number, a Boolean, or a null value, the text representation will be used, in such a fashion that it is a valid json or jsonb value.
+    </li>
+    <li>to_jsonb(expression): Returns the value as jsonb.
+    </li>
+    <li>jsonb_set(jsonObject, path, new_value[, create_missing_Flag]): Returns the value with the section designated by path replaced by new_value, or with new_value added if create_missing_Flag is true ( default is true) and the item designated by path does not exist.
+    </li>
+
+</ol>
+    
+
+
+
+<p><A name=sample>JSON sample</a></p>
+<pre>
+select cast('[{"a":"foo"},{"b":"bar"},{"c":"baz"}]' as json)->2 # output {"c":"baz"}
+select cast('[{"a":"foo"},{"b":"bar"},{"c":"baz"}]' as jsonb)->2 # maybe output  {"c":"baz"}
+
+select cast('{"a": {"b":"foo"}, "c":{"a": "aaa"}}' as json)->'a' # output  {"b":"foo"}
+
+select cast('[{"a":"foo"},{"b":"bar"},{"c":"baz"}]' as json)->>2 # output  {"c":"baz"}
+select cast('{"a": {"b":"foo"}, "c":{"a": "aaa"}}' as json)->>'a' # output  {"b":"foo"}
+
+select cast('{"a": {"b":{"c": "foo"}}}' as json)#> '{a,b}' # output  {"c": "foo"}
+select cast('{"a": {"b":{"c": "foo"}}}' as json)#>> '{a,b}' # output  {"c": "foo"}
+
+
+SELECT cast('{"bar": "baz", "balance":      7.77, "active":false}' as json);
+SELECT cast('{"bar": "baz", "balance":      7.77, "active":false}' as jsonb);
+
+SELECT convert('null',json);
+SELECT cast('33.56' as json);
+SELECT cast('"abcdef"' as json);
+SELECT convert('["guia","test"]', json);
+SELECT cast(null as json);
+
+select to_json('Fred said "Hi."');
+select to_json(true);
+
+select to_jsonb(true);
+
+select jsonb_set('[{"f1":1,"f2":null},2]', '{0,f3}','[2,3,4]');
+
+select jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false);
+
+create table if not exists testjson (jdoc jsonb);
+insert into testjson values('["guia","test"]');insert into testjson values('{"name": "Angel Back","company": "Tom Cat","is_active": true,"tags": ["gui","test"]}');
+select * from testjson;
+select jdoc->'name'   from testjson where jdoc->'company'='Tom Cat';
+
+</pre>
+    
+    
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>

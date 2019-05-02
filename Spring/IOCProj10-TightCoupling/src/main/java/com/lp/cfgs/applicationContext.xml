@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+ <!-- Cfg Dependent class -->
+   <bean id="dtdCourier"  class="com.lp.beans.DTDC"/>
+   <bean id="bDartCourier"  class="com.lp.beans.BlueDart"/>
+      <bean id="ffp"  class="com.lp.beans.FirstFLiet"/>
+      
+   <!-- Cfg Taget class -->
+   <bean id="fkt"  class="com.lp.beans.FlipKart">
+         <property name="dtdc"  ref="dtdCourier"/>
+     <!-- <property name="bDart" ref="bDartCourier"/> -->
+   </bean>
+
+</beans>

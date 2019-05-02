@@ -1,0 +1,21 @@
+package com.lp.logics;
+
+import java.util.Scanner;
+
+public class HarmonicFactTest {
+
+	public static void main(String[] args) {
+		int n=0;
+		double result=0;
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a no ::");
+		n=sc.nextInt();
+
+		while(n!=0) {
+			result=result+1/n;
+			System.out.println(result);
+		}
+	}
+
+}

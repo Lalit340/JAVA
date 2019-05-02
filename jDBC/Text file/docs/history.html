@@ -1,0 +1,290 @@
+<html><head><TITLE>history.html - HXTT Text (CSV) JDBC Drivers for raw data, flat text, CSV file, TSV file, PSV file, fixed-length, and variable-length binary file v6.0</TITLE><meta name="keywords"  content="Text, JDBC, TRANSACTION, jdbc drivers, sql, protocol, transaction, database, ResultSet, commit, rollback, embedded, CSV, DB, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><font size=4 color="#000000"><a name="versionlog">Released Version Log</a></font>
+<BLOCKQUOTE> Latest feature:
+  <ul>
+
+     <li>2018-10-07 provides dbo as a pseudo name  for the current schema for JasperSoft tool. The old "." name can still be used too.</li>
+     <li>2018-09-20 supports JSON, JSONB, XML, and ARRAY.</li>
+     <li>2018-08-30 provides _CURRENT_ as a pseudo name  for the current catalog for JasperSoft tool. The old "." name can still be used too.</li>
+     <li>2018-04-12 needn't to encode special character for http/https url.</li>
+     <li>2018-02-02 can split multivalue column into rows through special subquery table.</li>
+     <li>2017-11-13 provides lockType=MultiJVM for multi server (multi JVM). </li>
+
+   </ul>
+</BLOCKQUOTE>
+<br>
+<BLOCKQUOTE>  2017-08-02 Text v6.0 JDBC1.2 Package(1289KB) JDBC2.0 Package(1270KB)
+  JDBC3.0 Package(1328KB) JDBC4.0 Package(1473KB) JDBC4.1 Package(1476KB) JDBC4.2 Package(1487KB)
+  <ul>
+     <li>2017-06-30 PreparedStatement.executeBatch suupports RETURN_GENERATED_KEYS. </li>
+     <li>2017-06-31 allows LONGCHAR type in ODBC schema file than 255 characters. </li>
+     <li>2017-04-25 fixed a bug to detect MAC CSV file on Windows OS since 2016-06-25. </li>
+      <li>2016-09-30 provides Pseudo Table INFORMATION_PARSER.sql for SQL syntax analysis feature. </li>
+    <li>2016-04-21 * and ? can be used in filename of odbcSchemaFile connection property to load multi scheme files.</li>
+
+     <li>2016-03-23 provides refreshIntervalfor ftp/sftp protocol</li>
+     <li>2016-03-23 supports DatabaseMetaData.getTables for ftp/sftp protocol</li>
+     <li>2016-02-19 will skip wrong quote(") character in CSV file for ignoreDirtyData=true.</li>
+     <li>2016-02-04 supports escape character '\' in pattern for DatabaseMetaData.</li>
+     <li>2016-01-04 supports % in file name for SFTP url.</li>
+     <li>2015-11-21 detects EOL length for FixedLength data file in ODBC schema file.</li>
+     <li>2015-10-02 uses space character, not '\0', for null value for TIMESTAMP type in fixed width file.</li>
+     <li>2015-09-12 supports more date format for ODBC schema file.</li>
+     <li>2015-04-30 supports write sftp protocol data file.</li>
+     <li>2015-04-27 supports to parse schema file through URL.</li>
+     <li>2014-11-12 CSV parse error can be fetched through Statement.getWarings(). The prior version used ResultSet.getWarning().</li>
+     <li>2014-10-16 fixed a load bug which waiting the thread to parse all CSV rows.</li>
+     <li>2014-09-02 supports write ftp protocol data file.</li>
+     <li>2014-08-08 fixed an insert bug on SAMBA CSV file.</li>
+     <li>2014-05-08 v5.2.001 supports JDBC 4.2.</li>
+   </ul>
+</BLOCKQUOTE>
+
+<br>
+<BLOCKQUOTE>  2014-05-08 Text v5.2 JDBC1.2 Package(1257KB) JDBC2.0 Package(1240KB)
+  JDBC3.0 Package(1298KB) JDBC4.0 Package(1414KB) JDBC4.1 Package(1418KB) JDBC4.2 Package(1428KB)
+  <ul>
+    <li>2014-05-08 v5.2.001 supports JDBC 4.2.</li>
+    <li>2013-10-09 supports NTLM Authentication for SAMBA url or SAMBA absolute path. </li>
+    <li>2013-08-27 fixed an ArrayIndexOutOfBoundsException bug on system function since 2013-08-09. </li>
+    <li>2013-08-09 support update batch column list syntax. For instance, UPDATE "UIP_Target" SET ("key_string","key_int","data_string","data_int","data_decimal" ) = (SELECT COALESCE(DP3475."key_string", "UIP_Target"."key_string"),COALESCE(DP3475."key_int", "UIP_Target"."key_int"),COALESCE(DP3475."data_string", "UIP_Target"."data_string"),COALESCE(DP3475."data_int", "UIP_Target"."data_int"),COALESCE(DP3475."data_decimal", "UIP_Target"."data_decimal") FROM DP3475 WHERE "UIP_Target"."key_string"=DP3475."KEY208" AND "UIP_Target"."key_int"=DP3475."KEY572") WHERE EXISTS (SELECT 'X' FROM DP3475 WHERE "UIP_Target"."key_string"=DP3475."KEY208" AND "UIP_Target"."key_int"=DP3475."KEY572")</li>
+    <li>2013-08-02 fixed a cache bug for In subqueryTable expression which subqueryTable contains parameter since 2013-02-25. </li>
+    <li>2013-06-29 fixed a match partly bug on FULL OUTER JOIN. </li>
+    <li>2013-06-26 fixed a condition bug for where clause since 2013-06-23.</li>
+    <li>2013-05-03 fixed a NullPointerException bug for date convertion function since 2013-04-11.</li>
+    <li>2013-05-02 fixed a bug for Union ALL with where-clause.</li>
+    <li>2013-05-02 fixed a temporary index bug on longvarchar column of subquery table since 2012-10-23.</li>
+    <li>2013-04-06 LIKE/ILIKE supports complicated expression as string pattern.</li>
+    <li>2013-03-11 v5.1.108 allows omittance [CONSTRAINT constraint_name] for UNIQUE in constraint clause.</li>
+    <LI>2013-03-07 provides how to install HXTT DB Server as system service on MS Windows 7, Windows 2008, and Vista for remote connection and remote control</li>
+    <li>2012-12-11 v5.1.090 provides SPLIT(expression,delimiter) function.</li>
+    <li>2012-11-09 v5.1.085 supports AES(128/192/256) for encrypt,decrypt,encode/decode function.</li>
+    <li>2012-11-01 v5.1.083 provides also an independent parse thread for writable CSV file besides readonly CSV.</li>
+    <li>2012-10-25 v5.1.080 optimizes temporary index for EXISTS subquery with jon tables.</li>
+    <li>2012-10-23 v5.1.079 quicken IN on subquery with more than 100,000 data rows.</li>
+    <li>2012-10-20 v5.1.077 supports NUMBER[(n1[,n2])] for CREATE TABLE sql.</li>
+    <li>2012-10-04 v5.1.073 supports XML format for SELECT ... INTO OUTFILE syntax.</li>
+    <li>2012-10-01 v5.1.072 optimizes long varchar type of temporary index.</li>
+    <li>2012-09-27 v5.1.071 supports seamlessly sftp url database in jdbc url and sql.</li>
+    <li>2012-08-21 v5.1.067 supports more than 2 ASCII>128 characters as line terminator for _CSV_EOL connection property.</li>
+    <li>2012-07-07 v5.1.056 supports CSV format for SELECT ... INTO OUTFILE syntax.</li>
+    <li>2012-02-25 v5.1.031 supports Statement.setQueryTimeout.</li>
+    <li>2012-02-10 v5.1.026 supports query on SCHEMATA, TABLES, COLUMNS of INFORMATION_SCHEMA schema.</li>
+    <li>2011-11-10 v5.1.008 provides five regular expression functions(REGEXP_COUNT, REGEXP_LIKE, REGEXP_REPLACE, REGEXP_INSTR, and REGEXP_SUBSTR)</li>
+     <li>2011-10-30 v5.1.005 optimizes speed for DISTINCTROW on multi tables.</li>
+ </ul>
+</BLOCKQUOTE>
+<br>
+<BLOCKQUOTE> 2011-10-11 Text v5.1 JDBC1.2 Package(1078KB) JDBC2.0 Package(1063KB)
+  JDBC3.0 Package(1107KB) JDBC4.0 Package(1211KB) JDBC4.1 Package(1214KB)
+  <ul>
+     <li>v5.1.001 supports JDBC 4.1.</li>
+    <li>v5.0.020 supports PIVOT expression besides column.</li>
+   <li>v5.0.019 supports [START WITH initial-condition] CONNECT BY [NOCYCLE] recurse-condition. level is a pseudo column that can be used in hierarchical queries.</li>
+     <li>v5.0.002 supports CREATE VIEW and DROP VIEW.</li>
+     <li>v5.0.001 will utilize default _CSV_Quoter and _CSV_Header property value for odbcSchemaFile property defined tables.</li>
+  </ul>
+</BLOCKQUOTE>
+<br>
+<BLOCKQUOTE> 2011-04-05 Text v5.0 JDBC1.2 Package(837KB) JDBC2.0 Package(874KB)
+  JDBC3.0 Package(917KB) JDBC4.0 Package(1008KB)
+  <ul>
+     <li>v4.2.207 provides emptyStringAsNull connection property.</li>
+     <li>SELECT ... FOR UPDATE will lock all the selected rows for transaction until transaction commit or rollback even if you close that ResultSet since v4.2.200.</li>
+     <li>SELECT ... FOR UPDATE will lock all the selected rows so that other users cannot lock or update the rows until you close that ResultSet since v4.2.198.</li>
+     <li>v4.2.174 supports function decode( expression , search , result [, search , result]... [, default] )</li>
+     <li>v4.2.162 will trim spaces before/after unenclosed column name when _CSV_Header=true.</li>
+     <li>v4.2.143 stores predefined CREATE TABLE sql information when creates new binary file.</li>
+     <li>v4.2.137 provides tmpdir=_memory_ connection property.</li>
+     <li>v4.2.110 provides temporary index for readonly mode.</li>
+     <li>v4.2.087 provides locale connection property for date/number parse.</li>
+     <li>v4.2.080 supports '[]' to specify a range of characters for LIKE/ILIKE.</li>
+     <li>v4.2.080 supports more than one character as value separator.</li>
+     <li>v4.2.038 fixed a bug on LEFT JOIN, which will return empty result for specific condition.</li>
+     <li>v4.2.023 provides LASTEVL(column) which is useful when data are stored by using suppression of repeated data.</li>
+     <li>v4.2.019 provides maxScanRows4ColumnCount connection property to detect the possible maximum column count.</li>
+     <li>v4.2.017 supports using CTEATE TABLE sql to define table structure for url database(http, https, ftp).</li>
+     <li>v4.2.014 fixed a bug which will take csv header as data row sometimes since v4.2.012.</li>
+     <li>v4.2.012 detects the possible maximum column count according to the first 8~64 rows.</li>
+     <li>v4.2.005 supports DISTINCT parameter for the aggregate functions of COUNT, SUM, and AVG.</li>
+     <li>v4.2.001 supports JDBC4.0.</li>
+  </ul>
+</BLOCKQUOTE>
+<br>
+<BLOCKQUOTE> 2008-09-22 Text v4.2 JDBC1.2 Package(873KB) JDBC2.0 Package(863KB)
+  JDBC3.0 Package(909KB) JDBC4.0 Package(999KB)
+  <ul>
+     <li>v4.1.011 fixed a bug on ResultSet.last() since v4.0.046.</li>
+     <li>v4.1.010 provides LASTNVL(column) which is useful when data are stored by using suppression of repeated data.</li>
+     <li>v4.1.004 supports WITH ROLLUP, WITH CUBE, and GROUPING(expression).</li>
+     <li>v4.1.004 supports bitwise logical operator(&, |, ~, ^, &lt;&lt;, &gt;&gt;), BITAND(x, y), and BIT_COUNT(x).</li>
+     <li>v4.1.001 provides _CSV_ColumnCount4EmptyFile connection property tO specifythe default column count for an empty text file without header information and data rows.</li>
+  </ul>
+</BLOCKQUOTE>
+
+<BLOCKQUOTE> 2008-07-23 Text v4.1 JDBC1.2 Package(868KB) JDBC2.0 Package(860KB)
+  JDBC3.0 Package(906KB)
+  <ul>
+     <li>v4.0.038 provides _CSV_EOL connection property tO specify1~2 character sequence to terminate one line.</li>
+     <li>v4.0.036 supports GROUP_CONCAT function.</li>
+     <li>v4.0.034 supports lower(upper) function in LIKE expression.</li>
+     <li>v4.0.026 provides decimalFormat, decimalSeparator, and groupingSeparator connection property  tO specifythe default parse sequence of decimal number format.</li>
+     <li>v4.0.016 provides dateFormat, timeFormat and timestampFormat connection property  tO specifythe default parse sequence of date, time, and timestamp formats.</li>
+     <li>v4.0.001 supports INTO variable[,...] for SELECT sql.</li>
+     <li>v4.0.001 supports SET variable = expression [,...].</li>
+     <li>v4.0.001 supports DECLARE Local Variables.</li>
+  </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2007-10-29 Text v4.0 JDBC1.2 Package(877KB) JDBC2.0 Package(868KB)
+  JDBC3.0 Package(915KB)
+  <ul>
+     <li>For data export purpose, v3.1.085 will detect numeric(precision, scale) type and varchar(maxDataLength) type when maxScanRows=0 and readOnlyMode=true. ResultSetMetaData.getColumnDisplaySize() can still be used to know the max data length for all data types.</li>
+     <li>v3.1.084 replaced "? Expression" with "SELECT select_list".</li>
+     <li>v3.1.081 fixed a bug on data type detection since v3.1.063.</li>
+     <li>v3.1.080 provides SHA1 function besides MD5 and Crypt3.</li>
+     <li>v3.1.079 can parse all kinds of date, time, and timestamp format, without prefined date format, or default date format.</li>
+     <li>v3.1.070 uses the first CSV line information to verify predefined CREATE TABLE sql when _CSV_Header=true.</li>
+     <li>v3.1.068 changed the visibility of columns in JOIN table with parentheses from invisible to visible.</li>
+     <li>v3.1.068 supports JOIN and subquery in PIVOT and UNPIVOT.</li>
+     <li>v3.1.057 supports seamlessly https url database in jdbc url and sql.</li>
+     <li>v3.1.004 will append \r\n terminator for insert row at once to support lame Perl chop code.</li>
+     <li>v3.1.004 supports to detect automatically BOOLEAN type. Old package supports date type detection for VARCHAR, DATE, TIME, TIMESTAMP, INT, BIGINT, and DOUBLE.</li>
+     <li>v3.1.001 supports <a href="http://www.hxtt.com/text/advanced.html#mining">SAMBA table</a>, which needn't to map or mount driver.</li>
+  </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2007-01-11 Text v3.1 JDBC1.2 Package(856KB) JDBC2.0 Package(847KB)
+  JDBC3.0 Package(893KB)
+  <ul>
+     <li>v3.0.048 optimizes memory occupation for UNION ALL.</li>
+     <li>v3.0.044 added CP850, CP852, CP866, CROATIAN, HEBREW, and SWEDISH sort for COLLATE function.</li>
+     <li>v3.0.030 provides ignoreDirtyXML connection property for invalid XML characters in string value.</li>
+     <li>v3.0.027 provides ignoreDirtyData connection property for number value or date value.</li>
+     <li>v3.0.027 provides function getNumber, getInt, getLong, and getDouble for dirty data.</li>
+     <li>v3.0.025 fixed a bug in pack csv table.</li>
+     <li>v3.0.020 provides DTOS(date1 | timestamp1,pattern) for date conversion.</li>
+     <li>v3.0.019 supports to detect automatically and utilize byte-order marker (BOM) in UTF file for CSV, TSV, and PSV.</li>
+     <li>v3.0.016 optimizes speed for UNION.</li>
+     <li>v3.0.014 provides maxIdleTime connection property. maxIdleTime indicates the max idle time in minute for remote connection. That option is mainly used to avoid closing automatically idle remote connection for connection pool. Embedded idle connectoin won't be closed automatically except for garbage collection. You can use 1~1440 minutes. Default: 15. </li>
+     <li>v3.0.013 supports to load schemaFile and odbcSchemaFile from any (absolute or relative) path, even you can load it from http url or compressed file.</li>
+     <li>v3.0.007 provides STRZERO(nExpression, nLength[, nDecimals]) function.</li>
+     <li>v3.0.006 provides POSIXTOT and TTOPOSIX for POSIX timestamp conversion.</li>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2006-08-07 Text v3.0 JDBC1.2 Package(939KB) JDBC2.0 Package(926KB)
+  JDBC3.0 Package(970KB)
+  <ul>
+     <li>v3.0.001 fixed a bug in parsing int column since v2.3.038.</li>
+     <li>v2.3.038 optimizes speed for parsing CSV/TSV/PSV files with a large number of columns, for instance, 3000 columns.</li>
+     <li>v2.3.035 supports Create Table from any java.io.InputStream object.</li>
+     <li>v2.3.022 supports Pascal Style Strings. It's easy to extract data from Turbo Pascal applications now.</li>
+     <li>v2.3.019 supports PIVOT and UNPIVOT.</li>
+     <li>v2.3.014 provides CDATE(expression,pattern) for date conversion.</li>
+     <li>v2.3.003 fixed a bug in update transaction on csv table.</li>
+     </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2006-05-17 Text v2.3 JDBC1.2 Package(810KB) JDBC2.0 Package(802KB)
+  JDBC3.0 Package(847KB)
+  <ul>
+     <li>v2.2.025 supports seamlessly url(http, ftp) database in jdbc url and sql.</li>
+     <li>v2.2.025 supports seamlessly memory-only database in jdbc url and sql for internal data processing, applets, or certain special applications.</li>
+     <li>v2.2.025 supports seamlessly files and directories in TAR and BZ2 file formats(.TAR, .BZ2, .TGZ, .TAR.GZ, .TAR.BZ2) in jdbc url and sql.</li>
+     <li>v2.2.016 supports using common file in url to set csvfileExtension property. For instance, jdbc:text:/f:/textfiles/a.txt?_CSV_Header=true, then you can use select * from "a.txt", select * from a.txt, or select * from a.</li>
+     <li>v2.2.016 provides TABLELOCKED(cTableName) function.</li>
+     <li>v2.2.015 provides _CSV_Comment tO specifywhether ther're some comment lines before csv header and data rows. If you use n (integer values), the first n lines will be ignored as comment. If you use some paragraphs, these paragraphs will be used for csv file creation, the total line number of comment will be used for existent file.</li>
+     <li>v2.2.008 uses automatic temporary index to quicken subquery sql.</li>
+     <li>v2.2.002 provides lock table and unlock table sql.</li>
+  </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2006-03-07 Text v2.2 JDBC1.2 Package(769KB) JDBC2.0 Package(784KB)
+  JDBC3.0 Package(820KB)
+  <ul>
+     <li>v2.2.001 provide maxScanRows for auto data type detection.</li>
+     <li>v2.1.125 uses automatic temporary index to quicken join sql.</li>
+     <li>v2.1.125 provides automatic temporary index feature option.</li>
+     <li>v2.1.122 optimizes IN, NOT IN, ALL, and ANY on subquery.</li>
+     <li>v2.1.122 provides universal table declaration for a series of tables with the same table structure. '?' represents any single character, and '*' represents a string of zero or more characters. For instance, create table "*.log" (...); create table [*a?b.*"] (...). Universal table declaration is only visible for the current connection, and isn't prior to any specific table declaration.</li>
+     <li>v2.1.115 provides SSL connection and customer connection for client/server mode.</li>
+     <li>v2.1.111 supports seamlessly files and directories in ZIP and GZIP file formats(.ZIP, .JAR, .GZ) in jdbc url and sql.</li>
+     <li>v2.1.102 changed CREATE SCHEMA sql to CREATE CATALOG</li>
+     <li>v2.1.102 changed [schemas.]tableName@[catalog] format to [catalog.]tableName</li>
+     <li>v2.1.101 provides readonly mode for speed optimization</li>
+     <li>v2.1.100 supports column numbers in ORDER BY clause</li>
+     <li>v2.1.98 supports Multiple-row VALUES tables.</li>
+     <li>v2.1.92 supports readonly database, for instance, CD and DVD.</li>
+     <li>v2.1.89 supports jdbc:csv://[host:port]/[DatabasePath] url also, except for jdbc:text://[host:port]/[DatabasePath].</li>
+     <li>v2.1.86 optimizes speed. </li>
+     <li>v2.1.84 supports MySQL Migration Toolkit v1.0.21</li>
+     <li>v2.1.82 supports aggregate function first(x), last(expression).</li>
+     <li>v2.1.82 provides solo mode for speed optimization.</li>
+     <li>v2.1.81 supports escape processing for _CSV_Separator and _CSV_Quoter.</li>
+     <li>v2.1.80 supports function ATN(x), CBOOL(expression), CBYTE(expression), CDBL(expression), CINT(expression), CLNG(expression), CSNG(expression), CSTR(expression), and CDATE(expression).</li>
+     <li>v2.1.40 provides com.hxtt.sql.text.OpenAPI.loadSchemaIniFile function for ODBC schema file.</li>
+  </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2005-09-12 Text v2.1 JDBC1.2 Package(731KB) JDBC2.0 Package(745KB)
+  JDBC3.0 Package(770KB)
+  <ul>
+    <li>supports MySQL Migration Toolkit v1.0.20</li>
+    <LI>supports MS Windows service and Linux Daemon for remote connection and remote control
+    <LI>supports DISTINCTROW.
+    <li>supports XA-Resources</li>
+    <li>provides function and connecton property to load odbc schema file for table structure definition</li>
+   <li>provides ILIKE syntax support,ignore upper and case like </li>
+   <li>provides $ token for checking whether left string is contained in right string.</li>
+    <li>provides transaction sql. </li>
+    <li>provides user/password verification for client/server mode.</li>
+  </ul>
+<br></BLOCKQUOTE>
+<BLOCKQUOTE> 2005-01-01 Text V2.0 JDBC1.2 Package(632KB) JDBC2.0 Package(624KB)
+  JDBC3.0 Package(640KB)
+  <ul>
+    <li>provides the quicker TCPServer to replace the slow RMIServer.</li>
+    <li>supports variable-length file. </li>
+    <li>utilizes index for ORDER BY and DISTINCT. </li>
+    <li>provides &quot;schemaFile&quot; properity to load many prepared table
+      definition SQL. </li>
+    <li>supports CREATE SEQUENCE, DROP SEQUENCE, and ALTER SEQUENCE. </li>
+    <li>provides Database GUI Manager.</li>
+    <li>provides collate function for multilingual sort.</li>
+    <li>supports [reserved word].</li>
+    <li>provides MD5 function. </li>
+    <li>provides Table Encryption and ColumnLevel Encryption. </li>
+    <li>provides _LockFlag_ virtual column as row lock flag for Borland's dataset. </li>
+    <li>provides encrypt/decrypt function for Row-Column (Cell) Level Encryption. </li>
+  </ul>
+<br></BLOCKQUOTE>
+<BLOCKQUOTE>2004-07-21 Text v1.0 JDBC1.2 Package(306KB) JDBC2.0 Package(380KB)
+  JDBC3.0 Package(399KB)
+  <ul>
+    <li>Development Documentation is available.</li>
+    <li>supports CREATE INDEX.</li>
+    <li>fixed a few known bugs.</li>
+  </ul>
+  <br>
+</BLOCKQUOTE>
+<BLOCKQUOTE>2003-12-21 Text Beta 1.2 JDBC1.2 Package(271KB) JDBC2.0 Package(352KB)
+  JDBC3.0 Package(375KB)
+  <ul>
+    <li>supports { UNION | INTERSECT | EXCEPT | MINUS } [ ALL ] query operations.</li>
+    <li>supports INNER, FULL, LEFT, RIGHT, NATURAL, and CROSS JOIN. </li>
+    <li>supports subquery which includes single-row subquery, multirow subquery,
+      multiple-column subquery, inline views, and correlated subquery. </li>
+    <li>fixed a few known bugs.</li>
+  </ul>
+  <br>
+</BLOCKQUOTE>
+<BLOCKQUOTE>2003-06-24 Text Beta 1.1 JDBC1.2 Package(260KB) JDBC2.0 Package(332KB)
+  JDBC3.0 Package(356KB)
+  <ul>
+    <li>supports JDBC3.0 and JDBC1.2 .</li>
+    <li>fixed a few known bugs.</li>
+  </ul>
+  <br>
+</BLOCKQUOTE>
+<BLOCKQUOTE>2003-05-20 Text Beta 1.0 JDBC2.0 Package(342KB)
+  <ul>
+    <li>supports SQL92 syntax, which includes INSERT, UNDATE, AND DELETE.</li>
+    <li>support multi-access.</li>
+    <li>supports CSV(Comma Separated Value) file and binary file.</li>
+  </ul>
+  <br>
+</BLOCKQUOTE>
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>

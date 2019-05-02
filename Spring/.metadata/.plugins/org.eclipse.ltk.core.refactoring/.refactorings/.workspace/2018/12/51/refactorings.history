@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;IOCProj37-ICCScoreWebApp&apos;" deleteContents="false" description="Delete resource &apos;IOCProj37-ICCScoreWebApp&apos;" element1="/IOCProj37-ICCScoreWebApp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1544952598368"/>&#x0A;<refactoring comment="Rename resource &apos;IOCPrOJ38-Cricbuzz&apos; to &apos;IOCPrOJ37-Cricbuzz&apos;" description="Rename resource &apos;IOCPrOJ38-Cricbuzz&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/IOCPrOJ38-Cricbuzz" name="IOCPrOJ37-Cricbuzz" stamp="1544952618464" updateReferences="true"/>
+</session>

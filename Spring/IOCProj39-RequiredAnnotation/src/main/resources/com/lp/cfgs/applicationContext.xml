@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="course" class="com.lp.beans.Course">
+		<property name="cname" value="Spring-1" />
+		<property name="fees" value="2000" />
+	</bean>
+	
+	<bean id="dt" class="java.util.Date" />
+	<bean id="dt1" class="java.util.Date">
+		<property name="date" value="14" />
+		<property name="month" value="04" />
+		<property name="year" value="97" />
+	</bean>
+	
+	<bean id="std" class="com.lp.beans.Student">
+		<property name="sname" value="Raja" />
+		<property name="regNo" value="140324013" />
+		<property name="course" ref="course" />
+		<property name="doj" ref="dt" />
+		<!-- <property name="dob" ref="dt1" /> -->
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+</beans>

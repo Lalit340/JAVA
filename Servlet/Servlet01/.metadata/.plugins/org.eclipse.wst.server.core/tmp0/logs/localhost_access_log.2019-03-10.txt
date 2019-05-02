@@ -1,0 +1,12 @@
+127.0.0.1 - - [10/Mar/2019:12:47:39 +0530] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:47:44 +0530] "GET /MarriageApp-Validations/ HTTP/1.1" 200 876
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:47:55 +0530] "GET /MarriageApp-Validations/jscript/marriage.js HTTP/1.1" 200 1313
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:48:01 +0530] "GET /favicon.ico HTTP/1.1" 404 1085
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:50:07 +0530] "POST /MarriageApp-Validations/murl HTTP/1.1" 200 171
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:50:09 +0530] "GET /MarriageApp-Validations/home.jpeg HTTP/1.1" 200 322922
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:50:16 +0530] "GET /MarriageApp-Validations/input.html HTTP/1.1" 200 876
+127.0.0.1 - - [10/Mar/2019:12:52:10 +0530] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:52:12 +0530] "GET /SessionTrackingWithUsingSessionObject-EncodedUrl/ HTTP/1.1" 200 609
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:52:32 +0530] "POST /SessionTrackingWithUsingSessionObject-EncodedUrl/firsturl HTTP/1.1" 200 644
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:52:42 +0530] "POST /SessionTrackingWithUsingSessionObject-EncodedUrl/secondurl;jsessionid=38016820E43A79FA4B40F6840C251FF1 HTTP/1.1" 200 483
+0:0:0:0:0:0:0:1 - - [10/Mar/2019:12:52:53 +0530] "POST /SessionTrackingWithUsingSessionObject-EncodedUrl/thirdurl HTTP/1.1" 200 171

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+<!--cfg  dependent classses-->
+   <bean id="stsBo"  class="com.lp.bo.StudentBo"  scope="prototype"  />
+   <bean  id="empBo"  class="com.lp.bo.EmployeeBo" scope="prototype" />
+   
+   <bean id="regDao"  class="com.lp.dao.RegistrationDaoImpl"  scope="singleton" />
+   
+   <bean  id="regService"  class="com.lp.service.RegistrationServiceImpl"  scope="singleton" >
+            <constructor-arg  name="dao"  ref="regDao" />
+            <lookup-method  name="getStudentBo"  bean="stsBo"/>
+            <lookup-method   name="getEmployeeBo"  bean="empBo"/>
+   </bean>
+   
+   <bean  class="com.lp.bpp.BoPostProcessor" />
+</beans>

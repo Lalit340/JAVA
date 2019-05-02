@@ -1,0 +1,28 @@
+
+Nov 29, 2018 24:16:34.83 NEW SESSION
+Nov 29, 2018 24:16:34.84 [6304:10876:1129/001634.769:ERROR:gcm_channel_status_request.cc(151)] GCM channel request failed.
+
+Nov 30, 2018 23:13:14.55 NEW SESSION
+Nov 30, 2018 23:13:14.55 [17176:10508:1130/231314.479:ERROR:shader_disk_cache.cc(257)] Failed to create shader cache entry: -2
+
+Dec 03, 2018 12:12:52.70 NEW SESSION
+Dec 03, 2018 12:12:52.70 [1628:10048:1203/121252.697:ERROR:entry_impl.cc(1062)] No file for 8000000a
+
+Dec 20, 2018 14:56:59.81 NEW SESSION
+Dec 20, 2018 14:56:59.81 [556:14376:1220/145659.777:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Dec 20, 2018 14:57:20.52 [556:14376:1220/145720.520:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Dec 20, 2018 14:58:00.86 [556:14376:1220/145800.862:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Dec 20, 2018 14:59:34.02 [556:14376:1220/145934.024:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Dec 20, 2018 15:03:14.50 [556:14376:1220/150314.500:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Dec 20, 2018 15:08:51.30 [556:14376:1220/150851.306:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+
+Jan 26, 2019 22:28:49.37 NEW SESSION
+Jan 26, 2019 22:28:49.73 [2736:1480:0126/222827.362:ERROR:socket_stream.cc(219)] Closing stream with result -2
+Jan 26, 2019 22:28:50.01 [2736:1480:0126/222830.518:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Jan 26, 2019 22:31:21.90 [2736:1480:0126/223121.861:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -7
+
+Feb 01, 2019 23:15:25.18 NEW SESSION
+Feb 01, 2019 23:15:25.64 [14996:14904:0201/231504.374:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Feb 01, 2019 23:15:27.67 [14996:14904:0201/231527.669:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -106
+Feb 01, 2019 23:16:09.44 [14996:14904:0201/231609.448:ERROR:connection_factory_impl.cc(408)] Failed to connect to MCS endpoint with error -21
+Feb 01, 2019 23:57:53.10 [14996:14904:0201/235753.101:ERROR:socket_stream.cc(219)] Closing stream with result -2

@@ -1,0 +1,93 @@
+<html><head><TITLE>array.html - HXTT Text (CSV) JDBC Drivers for raw data, flat text, CSV file, TSV file, PSV file, fixed-length, and variable-length binary file v6.0</TITLE><meta name="keywords"  content="Text, JDBC, jdbc drivers, CSV, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<p><font size="+1"><b>Chapter 12. Array Support</b></font></p>
+<p><b>Index</b>: </p>
+<ol>
+   <li><a href="#declaration">Declaration of Array Types</a></li>
+   <li><a href="#function">Array Functions</a></li>
+   <li><a href=#sample>Array sample</a></li>
+
+
+ </ol>
+
+
+<p><A name=declaration>Declaration of Array Types</a></p>
+<pre>
+An array data type is named by appending square brackets ([]) to the data type name of the array elements, and all the elements are of the same data type. The array subscript numbers are written within square brackets. It uses a one-based numbering convention for arrays, that is, an array of n elements starts with array[1] and ends with array[n].
+CREATE TABLE if not exists  book2018 (
+    item            varchar(16),
+    pay_by_month  decimal(12,2)[12],
+    schedule        longvarchar[][]
+);
+</pre>
+
+<p>
+
+
+</p>
+    
+
+
+
+<p><A name=function>Array Functions</a></p>
+<ol>
+    <li>CAST(expression AS  array): converts expression to array.
+       For instance, cast('{20000, 25000, 25000, 25000}' as array).<br>
+    </li>
+    <li>CONVERT(expression, data_type): converts expression to another data type (json and jsonb).
+       For instance, convert('{{"breakfast", "consulting"}, {"meeting", "lunch"}}', array).<br>
+    </li>
+    <li>to_array(expression): Returns the value as array.
+       For instance, to_array('{{"breakfast", "consulting"}, {"meeting", "lunch"}}').<br>
+    </li>
+    <li>array_assign(anyArrayElement,expression): Returns an array with supplied value.
+       For instance, array_assign(to_array('{{"breakfast", "consulting"}, {"meeting", "lunch"}}')[2],to_array('{"lunch", "meeting"}')).<br>
+    </li>
+
+
+    <li> SPLIT(string1, string2): split string1 according to delimiter string2, and return an String[] object (Types.ARRAY). Special SPLIT(expression,'') will return strings which contains only Letter and Digit. Special SPLIT(expression,null) will split string into length=1 strings, which is only Letter or Digit.
+    </li>
+
+
+</ol>
+    
+    
+    
+<p><A name=sample>Array sample</a></p>
+<pre>
+SELECT cast('{20000, 25000, 25000, 25000}' as array);
+SELECT convert('{{"breakfast", "consulting"}, {"meeting", "lunch"}}', array);
+select to_array('{{"meeting", "lunch"}, {"training", "presentation"}}');
+
+select to_array('{{"meeting", "lunch"}, {"training", "presentation"}}')[1][2];
+
+select array_assign(to_array('{{"breakfast", "consulting"}, {"meeting", "lunch"}}')[2],to_array('{"lunch", "meeting"}'));
+
+
+drop table if exists book2018;
+CREATE TABLE book2018 (    item            varchar(16),   pay_quarter  int[4], pay_month  DECIMAL(12,2)[12],    schedule        longvarchar[][2],comment java_object[],flags boolean[2],tempVars varchar(10)[2],tempDemo array, xmlDemo xml);
+INSERT INTO book2018 (item,pay_quarter,schedule)    VALUES ('Bill',    '{10000, 20000, 25000, 10000}', '{{"meeting", "lunch"}, {"training", "presentation"}}');
+INSERT INTO book2018 (item,pay_month,schedule)    VALUES ('Bill',    '{100.003, 200.106, 250.50, 10000,100.00, 200.10, 250.50, 10000,100.00, 200.10, 250.50, 62000}', '{{"meeting", "lunch"}, {"training", "presentation"}}');
+INSERT INTO book2018 (item,pay_quarter,schedule) VALUES ('Carol','{20000,20000, 25000, 25000}', '{{"breakfast", "consulting"}, {"meeting", "lunch"}}');
+
+*INSERT INTO book2018 (item,pay_quarter,schedule) VALUES ('Carol','{20000, 25000, 25000}', '{{"breakfast", "consulting"}, {"meeting", "lunch"}}');
+*INSERT INTO book2018 (item,pay_quarter,schedule) VALUES ('Carol','{20000, 25000, 25000,20000}', '{{"breakfast", "consulting"}, {"meeting"}}');
+INSERT INTO book2018 (tempVars) VALUES ('{"breakfast", "consulting abc"}');
+
+select * from book2018;
+
+
+SELECT item,pay_month[11],* FROM book2018 WHERE  pay_quarter[1] !=pay_quarter[2];
+
+UPDATE book2018 SET pay_quarter = '{25000,25000,27000,27000}'    WHERE item = 'Carol';
+
+select pay_quarter from ".".book2018 WHERE item = 'Carol';
+
+
+UPDATE book2018 SET pay_quarter[4] = 300    WHERE item = 'Carol';
+
+select pay_quarter from _current_.book2018 WHERE item = 'Carol';
+
+SELECT item,pay_month[11],* FROM book2018 WHERE  pay_quarter[1] !=pay_quarter[2];
+
+</pre>
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>

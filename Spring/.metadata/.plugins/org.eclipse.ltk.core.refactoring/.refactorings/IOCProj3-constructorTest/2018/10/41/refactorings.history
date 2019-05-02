@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;IOCProj3-constructorTest/src/com/Lp/cfgs/ApplicationTest.xml&apos; to &apos;ApplicationContext.xml&apos;" description="Rename resource &apos;ApplicationTest.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/Lp/cfgs/ApplicationTest.xml" name="ApplicationContext.xml" stamp="1539020260904" updateReferences="true"/>
+</session>

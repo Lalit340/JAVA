@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- loading jdbc class obj -->
+<bean id="drds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver"/>
+<property name="url"   value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+<property name="username"  value="system"/>
+<property name="password"   value="manager"/>
+</bean>
+
+<!-- cfgs dao class obj -->
+<bean id="setDao"  class="com.lp.dao.StudentDAOImpl">
+<property name="ds"  ref="drds"/>
+</bean>
+<!-- cfgs service class -->
+<bean id="setService"  class="com.lp.service.StudentServiceIMPL">
+<property name="dao"   ref="setDao"/>
+</bean>
+
+<!-- cfgs controller class -->
+<bean id="controller"   class="com.lp.controller.MainController">
+<property name="service" ref="setService"/>
+</bean>
+</beans>

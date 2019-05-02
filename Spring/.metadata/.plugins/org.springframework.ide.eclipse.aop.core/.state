@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="IOCProj34-MethodInjection"/>
+<aop-project name="IOCProj12-AutowiringByType"/>
+<aop-project name="IOCProj13-LooseCouplingTest"/>
+<aop-project name="IOCProj10-TightCoupling"/>
+<aop-project name="IOCProj24-p-c-NAmeSpaceTest"/>
+<aop-project name="IOCProj28-beanLifeCycle"/>
+<aop-project name="IOCProj30-beanLifeCycle-Junit4Test"/>
+<aop-project name="IOCProj33-DependencyLookup-UsingAC"/>
+<aop-project name="IOCProj18-DependencyCheckObjects"/>
+<aop-project name="IOCProj41-SpringbootLayedApp"/>
+<aop-project name="IOCProj8-InnerBeanTest"/>
+<aop-project name="IOCProj27-I18NCoreBased"/>
+<aop-project name="IOCProj32-DependencyLookup-Improvement"/>
+<aop-project name="IOCProj7-ConstructorInjectionTest"/>
+<aop-project name="IOCProj9-beanInheritance"/>
+<aop-project name="IOCProj14-AutowireConstructor"/>
+<aop-project name="IOCProj19-DependencyCheckALL"/>
+<aop-project name="IOCProj20-DependencyCheck5uses"/>
+<aop-project name="IOCProj35-LMI-BPP"/>
+<aop-project name="IOCProj23-NestedBean-Java8forEach+Autowire"/>
+<aop-project name="IOCProj31-DependencyLookup"/>
+<aop-project name="IOCProj5-realtimelayedApp"/>
+<aop-project name="IOCProj21-realtimeLayedApp-AutoWIreConTest"/>
+<aop-project name="IOCProj29-beanLifeCycleProgramatic"/>
+<aop-project name="IOCProj6-CollectionInjectionTest"/>
+<aop-project name="IOCProj39-RequiredAnnotation"/>
+<aop-project name="IOCProj11-AutowiringByName"/>
+<aop-project name="IOCProj17-DependencyCheckSimple"/>
+<aop-project name="IOCProj16-AutowireWithALL6Uses"/>
+<aop-project name="IOCProj38-PripertiesEditorWithGradle"/>
+<aop-project name="IOCProj26-NestedBean-AC-PropertiesFile"/>
+<aop-project name="IOCProj15-AutowireAutodetect"/>
+<aop-project name="IOCProj22-NestedBean"/>
+<aop-project name="IOCProj25-ApplicationContextCnWithLazy-init"/>
+<aop-project name="IOCProj36-FactoryBean"/>
+</aop-reference-model>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+   <bean id="cricket" class="com.lp.beans.ProfessionalCricketer">
+		<constructor-arg>
+			<bean class="com.lp.beans.PersonalBat">
+				<property name="make" value="mrf" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg name="nam" value="Virat"></constructor-arg>
+	</bean>
+
+</beans>

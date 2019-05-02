@@ -1,0 +1,300 @@
+<html><head><TITLE>installation.html - HXTT Excel JDBC Drivers for Microsoft Excel (MS Excel) 95/97/98/2000/2001/XP/2002/2003/2004/2007/2010/2013/2016 v5.0</TITLE><meta name="keywords"  content="Excel, JDBC, driver, pure Java, type 4, jdbc drivers, jdbc driver, Java, sql, protocol, database, engine, embedded, remote access, Personal Java, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body> 
+<p><font size="+1"><b>Chapter 2. Installation</b></font></p>
+<p><b>Index</b>: </p>
+<ol>
+  <li><a href="#requirement">System Requirements</a></li>
+  <li><a href="#install">Setting the CLASSPATH </a></li>
+  <li><a href="#load">Loading the Driver</a></li>
+  <li><a href="#url">Connecting to the Database</a></li>
+</ol>
+<p><A name=requirement>System Requirements</a></p>
+<p>HXTT Excel packages include a Type 4 JDBC driver. Type 4 indicates that the driver 
+  is written in Pure Java, and communicates in the database system's own network 
+  protocol. Because of this, the driver is platform independent; once compiled, 
+  the driver can be used on any system. HXTT Excel can run on any platforms with 
+  Java VM, which includes Microsoft Windows, Novell Netware, OS2, UNIX, and LINUX. 
+  HXTT Excel supports Personal Java, JDK1.0.X, JDK1.1.X, JDK1.2.X, JDK1.3.X, JDK1.4.X, JDK1.5.X, JDK1.6.X, and JDK1.7.X. HXTT Excel includes a database engine which 
+  can support multi-user access. It supports { UNION | INTERSECT | EXCEPT | MINUS 
+  } [ ALL ] query , INNER JOIN, FULL JOIN, LEFT JOIN, RIGHT JOIN, NATURAL JOIN, 
+  CROSS JOIN, and subquery which includes single-row subquery, multirow subquery, 
+  multiple-column subquery, inline views, and correlated subquery.</p>
+<p><A name=install>Setting the CLASSPATH </a></p>
+<p> When java loads any class, it searches a list known as the classpath. This 
+  is a list of directories where classes are placed, or a list of jar files (archives 
+  containing classes and other resources) or both. HXTT Excel driver is a Type 
+  4 driver. You can do this in many different methods, but the most command are:</p>
+<ol>
+  <li>Setting the CLASSPATH environment variable.</li>
+  <li>putting it on the command line using the -cp parameter. </li>
+  <li>placing it in the JVM's lib/ext directory.</li>
+  <li>extract all files in jar file into the directory of your application. </li>
+</ol>
+<p> You can know detailed information about &quot;Setting the Classpath&quot; 
+  from your JDK Tools and Utilities. Let's use JDBC3.0 package as a simple sample. 
+  To put Excel_JDBC30.jar into your class path, you should use &quot;export 
+  CLASSPATH=/usr/share/lib/Excel_JDBC30.jar:$CLASSPATH&quot; on Solaris 
+  and Linux, and &quot;SET CLASSPATH=\javalib\Excel_JDBC30.jar;%classpath%&quot; 
+  on Windows.</p>
+<p></p>
+<p> <A name=load>Loading the Driver</a></p>
+<p>Any source that uses JDBC needs to import the java.sql package by using &quot; 
+  import java.sql.*;&quot;.<br>
+</p>
+<p>HXTT Excel driver' name is <b>com.hxtt.sql.excel.ExcelDriver</b>, and you can uses it without 
+  involving hard coding the driver into your code. You do this by setting the 
+  jdbc.drivers system property. For example, for command line apps you can use:<br>
+  java -Djdbc.drivers=com.hxtt.sql.excel.ExcelDriver yourApp<br>
+  Then, the JVM upon startup will load the drivers automatically. Some applications 
+  (JBoss, Tomcat etc) support a .properties file which they use to save putting 
+  this on the command line.</p>
+<p>The second method is the most common and involves you loading the driver yourself. 
+  It's simple:<br>Class.forName(&quot;com.hxtt.sql.excel.ExcelDriver&quot;);<br>From then on you can get connections from DriverManager.<br>Note: If Class.forName() throws ClassNotFoundException, you should check your classpath.</p>
+<p> <A name=url>Connecting to the Database</a> </p>
+<p>After the driver has been registered with the DriverManager, you can obtain 
+  a Connection instance that is connected to a particular database by calling 
+  DriverManager.getConnection(). With JDBC, a database is represented by a URL 
+  (Uniform Resource Locator). </p>
+<pre>
+        Embedded:
+                jdbc:excel:[//]/[DatabasePath][?prop1=value1[;prop2=value2]] (You can omit that "//" characters sometimes)
+                        For example:
+                                "jdbc:excel:/."
+                                "jdbc:excel:/c:/data" for Windows driver
+                                "jdbc:excel:///c:/data" for Windows driver
+                                "jdbc:excel:////usr/data" for unix or linux
+                                "jdbc:excel://///192.168.10.2/sharedir" for UNC path
+                                "jdbc:excel:/./data"
+                                "jdbc:excel:/./data/test8.xls"
+                                "jdbc:excel:/./data/report.xlsx"
+        Remote Access (client/server mode):
+                jdbc:excel://host:port/[DatabasePath]
+                        For example: "jdbc:excel://domain.com:3099/c:/data" if one ExcelServer is run on the 3099 port of domain.com
+                                     "jdbc:excel://domain.com:3099/c:/data/mydata.xls"
+                                     "jdbc:excel://domain.com:3099/c:/data/test.xlsx"
+                                     "jdbc:excel://domain.com:3099/c:/data/mydata.xml"
+        Compressed Database:(.ZIP, .JAR, .GZ, .TAR, .BZ2, .TGZ, .TAR.GZ, .TAR.BZ2) 
+                jdbc url format is the same as embedded url and remote url.
+                        For example:
+                                "jdbc:excel:/c:/test/testexcel.zip
+        Memory-only Database:
+                jdbc:excel:/_memory_/
+        URL Database:(http protocol, https protocol, ftp protocol, sftp protocol)
+                jdbc:excel:http://httpURL
+                jdbc:excel:https://httpsURL
+                jdbc:excel:ftp://ftpURL
+                jdbc:excel:sftp://sftpURL
+                        For example:
+                                "jdbc:excel:http://www.hxtt.com/test" //Note: FTP site's user/password should be set in ftpURL, and cannot be set in JDBC connection property because user/password JDBC connection property belongs to server/client connection.
+				"jdbc:excel:sftp://testa:123456@localhost"
+        SAMBA Database:(smb protocol)
+                                jdbc:excel:smb://[[[domain;]username[:password]@]server[:port]/[[share/[dir/]file]]][?[param=value]]
+                        For example:
+                                "jdbc:excel:smb://test1:123@100.100.13.94/excelfiles/zone" //Note: SAMBA user/password should be set in SMB url, and cannot be set in JDBC connection property because user/password JDBC connection property belongs to server/client connection.
+	UNC path JDBC url:
+                jdbc:excel:/uncpath
+                jdbc:excel:///uncpath
+                        For example:
+                                "jdbc:excel:/\\PC17\c$\values" 
+                                "jdbc:excel:/\\PC17\val"
+	Free JDBC url:(Warning: only use it for special project)
+                jdbc:excel:/" or "jdbc:excel:///". Then you can use some full UNC path names in SQL to visit anywhere where your Java VM has right to access.
+                        For instance:
+                                select * from \\amd2500\e$\excelfiles\test;
+                                select * from "\\amd2500\d$\exceliles".test;
+                                select * from ".".test;
+
+         HXTT Excel supports seamlessly data mining on memory-only table, physical table, url table, compressed table, SAMBA table in a sql. More details
+         is in Advanced Programming chapter.
+
+</pre>
+<p>To connect, you need to get a Connection instance from JDBC. To do this, you 
+  use the DriverManager.getConnection() method:</p>
+<blockquote>
+  <p>Connection con = DriverManager.getConnection(url, properties);</p>
+</blockquote>
+<p>There are a few different signatures for the getConnection() method. You should 
+  see the API documentation that comes with your JDK for more specific information 
+  on how to use them. You can specify additional properties to the JDBC driver 
+  by placing them in a java.util.Properties instance and passing that instance 
+  to the DriverManager when you connect.</p>
+<table border="1">
+  <tr> 
+    <td width="167"> 
+      <div align="center"><b>Property Name</b></div>
+    </td>
+    <td width="501"> 
+      <div align="center"><b>Definition</b></div>
+    </td>
+    <td width="74"> 
+      <div align="center"><b>Default Value</b></div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="167">host</td>
+    <td width="501">The remote host on which one ExcelServer is running </td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">port</td>
+    <td width="501">The port on which one ExcelServer is listening</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">serverType</td>
+    <td width="501">The type of ExcelServer on the remote host</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">user</td>
+    <td width="501">The user to connect as</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">password</td>
+    <td width="501">The password to use when connecting</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">charSet</td>
+    <td width="501">To specify a Character Encoding Scheme other than the client 
+      default. You can find a Supported Encodings list of file:///c|/jdk1.2/docs/guide/internat/encoding.doc.html. 
+      Cp895(Czech MS - DOS 895), Cp620(Polish MS - DOS 620) and Mazovia are extra 
+      supported although JVM doesn't support those.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">lockType</td>
+    <td width="501">To specify a compatible lock for other applications of Excel. 
+      This function hasn't been complemented.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">lockTimeout</td>
+    <td width="501">To specify Excel driver's timeout in milliseconds to wait 
+      until other processes or Excel applications released record lock or table 
+      lock. 0 means a default value, and &lt;0 means no wait.</td>
+    <td width="74">1000</td>
+  </tr>
+
+  <tr>
+    <td width="167">refreshInterval</td>
+    <td width="501">To specify a a refresh interval setting in seconds for FTP/SFTP database file which determines how long it to discard the content cache.</td>
+    <td width="74">60</td>
+  </tr> 
+
+
+
+  <tr> 
+    <td width="167">cryptType</td>
+    <td width="501">To specify a crypt type for Table Encryption and Column Level 
+      Encryption. All new created table in this connection will become crypted 
+      table. You can use DES, TRIDES, BLOWFISH, and AES now. It is not compatiable with MS Excel.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">cryptKey</td>
+    <td width="501">To specify a crypt key. Without encrypt key, CREATE TABLE 
+      won't create crypted table.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">storeCryptKey</td>
+    <td width="501">Indicates whether crypt key is stored in crypted table. If 
+      stored, crypted table can be opened automatically in any connection without 
+      predefined crypt properites. If not stored, cryptd table can only be opened 
+      with correct key, and none include us can help you in cracking your data 
+      without the correct key.</td>
+    <td width="74">false</td>
+  </tr>
+  <tr> 
+    <td width="167">tmpdir</td>
+    <td width="501">Indicates whether set a temp directory, Default: the value 
+      of JVM's &quot;java.io.tmpdir&quot; property. If that value is incorrect, 
+      uing the directory of JDBC url. _memory_ means large data in memory.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">delayedClose</td>
+    <td width="501">Indicates the delayed seconds for close transaction. 
+    That option is used to avoid frequent close/open table operations for following sqls. Automatic temporary index is disabled when delayedClose<=60s. 
+    You can use 0~120 seconds. Default: 3.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">maxIdleTime</td>
+    <td width="501">Indicates the max idle time in minute for remote connection. That option is mainly used to avoid closing automatically idle remote connection for connection pool. Embedded idle connectoin won't be closed automatically except for garbage collection. You can use 1~1440 minutes. Default: 30.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">maxCacheSize</td>
+    <td width="501">Indicates the max memory utilization for per table on automatic temporary index or matched result cache. 
+    You can use 16~65536 kilo bytes. Default: 1024.</td>
+    <td width="74">null</td>
+  </tr>
+  <tr> 
+    <td width="167">versionNumber</td>
+    <td width="501">Excel Version Number. You can use null, &quot;BIFF7&quot;(MS Excel 95), &quot;BIFF8&quot; (MS Excel 97/98/2000/2001/XP/2002/2003/2004), &quot;XLSX&quot; (MS Excel 2007/2010/2013).
+      This parameter is only used for CREATE DATABASE . 
+    </td>
+    <td width="74">BIFF8</td>
+  </tr>  
+  <tr> 
+    <td width="167">otherExtension</td>
+    <td width="501">Indicates whether Excel driver supports other extension beside 'xls', 'xlsx', and 'xlsm'. You can use comma to assign more than one extension, for instance, otherExtension=DB,ACR .</td>
+    <td width="74">null</td>
+  </tr>
+
+<tr> 
+    <td width="167">caseInsensitive</td>
+    <td width="501">Indicates whether is case insensitve for string comparison. You can use null, true, false
+    </td>
+    <td width="74">false</td>
+  </tr>
+
+  <tr> 
+    <td>firstRowHasNames</td>    
+    <td>Indicates whether the first row of worksheet data contains column names. If you use an int value n, it will use  the n row of worksheet data contains column names, and data row start from the n+1 row.</td>
+    <td>true</td>
+  </tr>
+
+  <tr> 
+    <td>maxScanRows</td>    
+    <td>Indicates how many rows should be scanned when determining the column types. If you set maxScanRows to 0, the entire file is scanned. If you set maxScanRows to a negative value, the file won't be scanned.</td>
+    <td>10</td>
+  </tr>
+  <tr> 
+    <td>dateFormat</td>
+    <td>dateFormat is used to specify a default parse sequence of date(Default: 'yyyy-MM-dd') format. 
+</td>
+    <td>yyyy-MM-dd</td>
+  </tr>
+  <tr> 
+    <td>timeFormat</td>
+    <td>timeFormat is used to specify a default parse sequence of time(Default: 'hh:mm:ss') format. 
+</td>
+    <td>hh:mm:ss</td>
+  </tr>
+  <tr> 
+    <td>timestampFormat</td>
+    <td>timestampFormat is used to specify a default parse sequence of timestamp(Default: 'yyyy-MM-dd hh:mm:ss') format. 
+</td>
+    <td>yyyy-MM-dd hh:mm:ss</td>
+  </tr>
+
+  <tr> 
+    <td>withFormat</td>    
+    <td>Indicates whether return number value (for instance, currency) in Formatting.</td>
+    <td>false</td>
+  </tr>
+</table> 
+
+<p>When your code then tries to open a Connection, and you get a No driver available 
+  SQLException being thrown, this is probably caused by the driver not being in 
+  the class path, or the JDBC url not being correct.</p>
+<p>To close the database connection, simply call the close() method to the Connection: 
+</p>
+<blockquote>
+  <p>con.close();</p>
+</blockquote>
+<p>&nbsp; </p>
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>

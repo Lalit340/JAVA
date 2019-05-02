@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+    
+    <bean id="spcar" class="com.lp.beans.Car" abstract="true">
+   <property name="model"  value="Swift"/>
+   <property name="color"  value="blue"/>
+   <property name="engType"  value="petrol"/>
+   <property name="engCC"  value="600"/>
+   <property name="sheets"  value="5"/>
+  </bean>
+  
+  <bean id="mncar"  class="com.lp.beans.Car"  parent="spcar">
+    <property name="ownerName" value="himansu"/>
+    <property name="engineNo" value="sz321fg56"/>
+    <property name="numPlate" value="TS09JL5566"/>
+  </bean>
+    
+  <bean id="mmcar"  class="com.lp.beans.Car"  parent="spcar">
+    <property name="ownerName" value="Ramesh"/>
+    <property name="engineNo" value="sz321fg78"/>
+    <property name="numPlate" value="TS09JL5886"/>
+    <property name="color" value="red"/>
+  </bean>
+
+</beans>

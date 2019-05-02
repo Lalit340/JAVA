@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+E:\Spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4100505828.index
+\IOCProj37-ICCScoreWebApp\src\main\resources
+E:\Spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\962908417.index
+\IOCPrOJ37-Cricbuzz\src\main\resources

@@ -1,0 +1,190 @@
+<html><head><TITLE>history.html - HXTT Excel JDBC Drivers for Microsoft Excel (MS Excel) 95/97/98/2000/2001/XP/2002/2003/2004/2007/2010/2013/2016 v5.0</TITLE><meta name="keywords"  content="Excel, JDBC, TRANSACTION, jdbc drivers, Java, sql, protocol, transaction, database, engine, ResultSet, commit, rollback, CSV, DB, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><font size=4 color="#000000"><a name="versionlog">Released Version Log</a></font>
+<BLOCKQUOTE> Latest feature:
+  <ul>
+     <li>2018-10-07 provides dbo as a pseudo name  for the current schema for JasperSoft tool. The old "." name can still be used too.</li>
+     <li>2018-09-21 supports JSON, JSONB, XML, and ARRAY.</li>
+     <li>2018-09-21 will add the missed sharedStrings information for XLSX file.</li>
+     <li>2018-08-30 provides _CURRENT_ as a pseudo name  for the current catalog for JasperSoft tool. The old "." name can still be used too.</li>
+     <li>2018-04-12 needn't to encode special character for http/https url.</li>
+     <li>2018-04-12 returns raw value if withFormat=false, returns formatted value if withFormat=true. For older package, it will always return formatted value for numeric value</li>
+     <li>2018-02-22 will fix some wrong dimension information for XLSX file. </li>
+     <li>2018-02-02 can split multivalue column into rows through special subquery table.</li>
+
+   </ul>
+</BLOCKQUOTE>
+<br>
+<BLOCKQUOTE>  2017-08-02 Excel v5.0 JDBC1.2 Package(1411KB) JDBC2.0 Package(1387KB)
+  JDBC3.0 Package(1436KB) JDBC4.0 Package(1588KB) JDBC4.1 Package(1591KB) JDBC4.2 Package(1602KB)
+  <ul>
+     <li>2017-08-02 will calculate the missing dimension element for XLSX file. </li>
+     <li>2017-06-30 PreparedStatement.executeBatch suupports RETURN_GENERATED_KEYS. </li>
+     <li>2016-09-30 provides Pseudo Table INFORMATION_PARSER.sql for SQL syntax analysis feature. </li>
+     <li>2016-05-16 supports Pack Table sql. </li>
+     <li>2016-03-23 provides refreshIntervalfor ftp/sftp protocol</li>
+     <li>2016-03-23 supports DatabaseMetaData.getTables for ftp/sftp protocol</li>
+     <li>2016-02-04 supports escape character '\' in pattern for DatabaseMetaData.</li>
+     <li>2015-12-09 fixed a bug for cell reference format on XLS file.</li>
+     <li>2015-09-12 quicken load speed for XLSX big shared string table.</li>
+     <li>2015-04-30 supports write sftp protocol data file.</li>
+     <li>2015-04-27 can write XLSX file on ftp site.</li>
+     <li>2015-04-08 fixed an INSERT hang up bug for large file.</li>
+     <li>2014-12-02 supports empty string in SST for XLS file.</li>
+     <li>2014-11-13 fixed a bug on customer cell format of XLS file.</li>
+     <li>2014-11-12 will use default format for Date object when use INSERT sql on XLS file.</li>
+     <li>2014-09-02 supports write ftp protocol data file.</li>
+     <li>2014-07-12 fixed an UNION ALL bug for firstRowHasNames=true without WHERE clause since 2013-05-02. </li>
+     <li>2014-05-08 v5.2.001 supports JDBC 4.2.</li>
+   </ul>
+</BLOCKQUOTE>
+
+<br>
+<BLOCKQUOTE>  2014-05-08 Excel v4.2 JDBC1.2 Package(1382KB) JDBC2.0 Package(1359KB)
+  JDBC3.0 Package(1408KB) JDBC4.0 Package(1532KB) JDBC4.1 Package(1535KB) JDBC4.2 Package(1546KB)
+  <ul>
+    <li>2014-05-08 v4.2.001 supports JDBC 4.2.</li>
+    <li>2014-02-19 fixed a delete bug for XLSX files. </li>
+    <li>2013-12-13 fixed an update bug for XLSX files. </li>
+    <li>2013-10-09 supports NTLM Authentication for SAMBA url or SAMBA absolute path. </li>
+    <li>2013-08-27 fixed an ArrayIndexOutOfBoundsException bug on system function since 2013-08-09. </li>
+    <li>2013-08-14 optimize spped for XLSX format. </li>
+    <li>2013-08-09 supports update batch column list syntax. For instance, UPDATE "UIP_Target" SET ("key_string","key_int","data_string","data_int","data_decimal" ) = (SELECT COALESCE(DP3475."key_string", "UIP_Target"."key_string"),COALESCE(DP3475."key_int", "UIP_Target"."key_int"),COALESCE(DP3475."data_string", "UIP_Target"."data_string"),COALESCE(DP3475."data_int", "UIP_Target"."data_int"),COALESCE(DP3475."data_decimal", "UIP_Target"."data_decimal") FROM DP3475 WHERE "UIP_Target"."key_string"=DP3475."KEY208" AND "UIP_Target"."key_int"=DP3475."KEY572") WHERE EXISTS (SELECT 'X' FROM DP3475 WHERE "UIP_Target"."key_string"=DP3475."KEY208" AND "UIP_Target"."key_int"=DP3475."KEY572")</li>
+    <li>2013-08-02 fixed a cache bug for In subqueryTable expression which subqueryTable contains parameter since 2013-02-25. </li>
+    <li>2013-06-29 fixed a match partly bug on FULL OUTER JOIN. </li>
+    <li>2013-06-26 fixed a condition bug for where clause since 2013-06-23.</li>
+    <li>2013-06-06 supports to insert Timestamp(Date, Time) value into XLSX format file.</li>
+    <li>2013-06-04 fixed an insert bug for XLSX format file.</li>
+    <li>2013-05-03 fixed a NullPointerException bug for date convertion function since 2013-04-11.</li>
+    <li>2013-05-02 fixed a bug for Union ALL with where-clause.</li>
+    <li>2013-04-19 v4.1.128 fixed a bug, which will ignore where-clause when subquery table is UNION sql sometimes.</li>
+    <li>2013-04-11 v4.1.124 fixed a bug for XLSX format, which failed sporadically to load all rows for big XML file sometimes.</li>
+    <li>2013-04-06 LIKE/ILIKE supports complicated expression as string pattern.</li>
+    <li>2013-03-11 v4.1.115 allows omittance [CONSTRAINT constraint_name] for UNIQUE in constraint clause.</li>
+    <LI>2013-03-07 provides how to install HXTT DB Server as system service on MS Windows 7, Windows 2008, and Vista for remote connection and remote control</li>
+    <li>2013-01-05 v4.1.099 fixed a bug for XLSX format, which can't detect date type when there's no numFmts element.</li>
+    <li>2013-01-04 v4.1.098 supports data mining on XLSX file in other compressed file.</li>
+    <li>2012-12-11 v4.1.094 provides SPLIT(expression,delimiter) function.</li>
+    <li>2012-11-11 v4.1.091 fixed a NPE exception bug since v4.1.088.</li>
+    <li>2012-11-09 v4.1.090 supports AES(128/192/256) for encrypt,decrypt,encode/decode function.</li>
+    <li>2012-11-02 v4.1.088 provides independent thread for uncompress big XML file in XLSX. For smalll document, HXTT Excel engine will unzip first that Sheetn.xml from XLSX file, check secondly XML syntax, load thirdly all sheet information, and allow SQL random access all rows at last. For big sheet, all operations (unzip file, XML parse, Excel sheet load, sql access) are concurrent now, so that it should be the fastest engine with a smaller memory requirement. Default 32000 rows are cached in memory, and you can ajust the cached row number through maxCacheSize connection property. </li>
+    <li>2012-11-01 v4.1.087 optimizes load random access speed for XLSX sheet with 1,048,576 rows</li>
+    <li>2012-11-01 v4.1.087 uses smaller memory to load 1,048,576 rows of XLSX sheet to avoid OutOfMemory Exception.</li>
+    <li>2012-11-01 v4.1.087 provides thread pool for XLSX parse and load.</li>
+    <li>2012-10-23 v4.1.084 quicken IN on subquery with more than 100,000 data rows.</li>
+    <li>2012-10-22 v4.1.083 fixed a bug for showing 1904-based time for XLS file.</li>
+    <li>2012-10-22 v4.1.083 fixed a bug for writing XLS file.</li>
+    <li>2012-10-20 v4.1.082 supports NUMBER[(n1[,n2])] for CREATE TABLE sql.</li>
+    <li>2012-10-06 v4.1.079 will force MS Excel to recalculate formulas on opening xlsx format.</li>
+    <li>2012-10-04 v4.1.078 supports XML format for SELECT ... INTO OUTFILE syntax.</li>
+    <li>2012-10-01 v4.1.077 optimizes long varchar type of temporary index.</li>
+    <li>2012-09-27 v4.1.076 supports seamlessly sftp url database in jdbc url and sql.</li>
+    <li>2012-07-07 v4.1.061 supports CSV format for SELECT ... INTO OUTFILE syntax.</li>
+    <li>2012-02-25 v4.1.033 supports Statement.setQueryTimeout.</li>
+    <li>2012-02-10 v4.1.028 supports query on SCHEMATA, TABLES, COLUMNS of INFORMATION_SCHEMA schema.</li>
+    <li>2011-11-10 v4.1.008 provides five regular expression functions(REGEXP_COUNT, REGEXP_LIKE, REGEXP_REPLACE, REGEXP_INSTR, and REGEXP_SUBSTR)</li>
+     <li>2011-10-30 v4.1.005 optimizes speed for DISTINCTROW on multi tables.</li>
+  </ul>
+</BLOCKQUOTE>
+<br>
+<BLOCKQUOTE> 2011-10-11 Excel v4.1 JDBC1.2 Package(1199KB) JDBC2.0 Package(1178KB)
+  JDBC3.0 Package(1213KB) JDBC4.0 Package(1323KB) JDBC4.1 Package(1327KB)
+  <ul>
+    <li>v4.1.001 supports JDBC 4.1.</li>
+     <li>v4.0.004 replaces LONGVARCHAR type with VARCHAR type, for date type detect.</li>
+     <li>v4.0.004 roundes double value according to cell format.</li>
+     <li>v4.0.003 provides caseInsensitive connection property.</li>
+   </ul>
+</BLOCKQUOTE>
+<BR>
+<BLOCKQUOTE> 2011-06-02 Excel v4.0 JDBC1.2 Package(1091KB) JDBC2.0 Package(1118KB)
+  JDBC3.0 Package(1150KB) JDBC4.0 Package(1255KB)
+  <ul>
+     <li>v4.0.001 supports CREATE/DROP DATABASE, CREATE/DROP/ALTER TABLE, INSERT, UPDATE, and DELETE, for XLSX format (MS Excel 2006/2010).</li>
+     <li>v3.0.020 supports PIVOT expression besides column.</li>
+  <li>v3.0.019 supports [START WITH initial-condition] CONNECT BY [NOCYCLE] recurse-condition. level is a pseudo column that can be used in hierarchical queries.</li>
+     <li>v3.0.016 provides read-only support for XLSX format (MS Excel 2006/2010).</li>
+     <li>v3.0.014 adjusts Daylight Saving Time for timestamp show.</li>
+     <li>v3.0.002 supports CREATE VIEW and DROP VIEW.</li>
+   </ul>
+</BLOCKQUOTE>
+<BR>
+<BLOCKQUOTE> 2011-04-05 Excel v3.0 JDBC1.2 Package(912KB) JDBC2.0 Package(945KB)
+  JDBC3.0 Package(980KB) JDBC4.0 Package(1075KB)
+  <ul>
+     <li>SELECT ... FOR UPDATE will lock all the selected rows for transaction until transaction commit or rollback even if you close that ResultSet since v2.2.200.</li>
+     <li>SELECT ... FOR UPDATE will lock all the selected rows so that other users cannot lock or update the rows until you close that ResultSet since v2.2.198.</li>
+     <li>v2.2.174 supports function decode( expression , search , result [, search , result]... [, default] )</li>
+     <li>v2.2.156 fixed a fetch reverse bug from the bottom of an Excel's ResultSet.</li>
+     <li>v2.2.137 provides tmpdir=_memory_ connection property.</li>
+     <li>v2.2.108 allow firstRowHasNames connection property to use the data row start from the firstRowHasNames+1 row.</li>
+     <li>v2.2.107 supports CREATE DATABASE from any input stream.</li>
+     <li>v2.2.084 fix a bug for DOUBLE/DATE data detection since v2.2.043.</li>
+     <li>v2.2.080 supports '[]' to specify a range of characters for LIKE/ILIKE.</li>
+     <li>v2.2.070 supports full ALTER TABLE sql.</li>
+     <li>v2.2.038 fixed a bug on LEFT JOIN, which will return empty result for specific condition.</li>
+     <li>v2.2.036 can read invalid xls file, which is produced by Java Excel API with invalid author information.</li>
+     <li>v2.2.015 fixed a bug on writing specific xls file since v2.1.015.</li>
+     <li>v2.2.005 supports DISTINCT parameter for the aggregate functions of COUNT, SUM, and AVG.</li>
+     <li>v2.2.001 supports JDBC4.0.</li>
+   </ul>
+</BLOCKQUOTE>
+<BR>
+<BLOCKQUOTE> 2008-09-22 Excel v2.2 JDBC1.2 Package(948KB) JDBC2.0 Package(934KB)
+  JDBC3.0 Package(972KB) JDBC4.0 Package(1065KB)
+  <ul>
+    <li>v2.1.016 fixed a bug which the first row become invisible in MS Excel when that row is frozen.</li>
+     <li>v2.1.011 fixed a bug on ResultSet.last() since v2.0.046.</li>
+     <li>v2.1.004 supports WITH ROLLUP, WITH CUBE, and GROUPING(expression).</li>
+     <li>v2.1.004 supports bitwise logical operator(&, |, ~, ^, &lt;&lt;, &gt;&gt;), BITAND(x, y), and BIT_COUNT(x).</li>
+   </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2008-07-23 Excel v2.1 JDBC1.2 Package(944KB) JDBC2.0 Package(932KB)
+  JDBC3.0 Package(969KB)
+  <ul>
+     <li>v2.0.036 supports GROUP_CONCAT function.</li>
+     <li>v2.0.035 supports to assign  more than one extension for otherExtension connection property.</li>
+     <li>v2.0.034 supports lower(upper) function in LIKE expression.</li>
+     <li>v2.0.001 supports INTO variable[,...] for SELECT sql.</li>
+     <li>v2.0.001 supports SET variable = expression [,...].</li>
+     <li>v2.0.001 supports DECLARE Local Variables.</li>
+   </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2007-10-29 Excel v2.0 JDBC1.2 Package(953KB) JDBC2.0 Package(940KB)
+  JDBC3.0 Package(979KB)
+  <ul>
+     <li>v1.1.084 replaced "? Expression" with "SELECT select_list".</li>
+     <li>v1.1.080 provides SHA1 function besides MD5 and Crypt3.</li>
+     <li>v1.1.078 can detect data type according to format information for cell, row, column, sheet, and workbook, when there's no data.</li>
+     <li>v1.1.071 can detect data type from "column format" in excel when it meets empty column.</li>
+     <li>v1.1.070 can detect data type from "cell display format" in excel when it meets empty cell.</li>
+     <li>v1.1.069 fixed a bug in detecting date value with customer defined format.</li>
+     <li>v1.1.068 changed the visibility of columns in JOIN table with parentheses from invisible to visible.</li>
+     <li>v1.1.068 supports JOIN and subquery in PIVOT and UNPIVOT.</li>
+     <li>v1.1.066 fixed an update bug when meets mixed blank cell and numeric cell.</li>
+     <li>v1.1.057 supports seamlessly https url database in jdbc url and sql.</li>
+     <li>v1.1.010 provides maxScanRows connection property for auto data type detection, but it still supports using different data types for a column.</li>
+     <li>v1.1.001 supports <a href="http://www.hxtt.com/excel/advanced.html#mining">SAMBA table</a>, which needn't to map or mount driver.</li>
+   </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2007-01-11 Excel v1.1 JDBC1.2 Package(931KB) JDBC2.0 Package(918KB)
+  JDBC3.0 Package(955KB)
+  <ul>
+     <li>v1.0.047 optimizes memory occupation for UNION ALL.</li>
+     <li>v1.0.044 added CP850, CP852, CP866, CROATIAN, HEBREW, and SWEDISH sort for COLLATE function.</li>
+     <li>v1.0.042 fixed an output bug for compressing multiple number values on a row.</li>
+     <li>v1.0.025 provides function getNumber, getInt, getLong, and getDouble.</li>
+   </ul>
+</BLOCKQUOTE>
+<BLOCKQUOTE> 2006-08-15 Excel v1.0 JDBC1.2 Package(918KB) JDBC2.0 Package(905KB)
+  JDBC3.0 Package(942KB)
+  <ul>
+     <li>supports seamlessly url(http, ftp) database in jdbc url and sql.</li>
+     <li>supports seamlessly memory-only database in jdbc url and sql for internal data processing, applets, or certain special applications.</li>
+     <li>supports seamlessly files and directories in ZIP, GZIP, TAR and BZ2 file formats(.ZIP, .JAR, .TAR, .BZ2, .TGZ, .TAR.GZ, .TAR.BZ2) in jdbc url and sql.</li>
+    <li>supports all of four transaction levels.</li>
+    <li>supports CREATE DATABASE, CREATE CATALOG, CREATE TABLE, DROP TABLE, RENAME TABLE, SELECT, INSERT, UPDATE, and DELETE sql.</li>
+    <li>Development Documentation is available.</li>
+    <li>supports JDBC3.0, JDBC2.0 and JDBC1.2.</li>
+    <li>supports create/query/update Microsoft Excel file version from 95, 97, 98, 2000, 2001, 2002, 2003, to 2004.</li>
+   </ul>
+</BLOCKQUOTE>
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>

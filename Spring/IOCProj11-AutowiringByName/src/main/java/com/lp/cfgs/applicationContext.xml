@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+
+	<!-- cfg configure the Dependent class -->
+	<bean id="tp" class="com.lp.beans.TourPlace">
+		<property name="places">
+			<array>
+				<value>Simla</value>
+				<value>Assam</value>
+				<value>wagha</value>
+				<value>Ambritsar</value>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id="tp1" class="com.lp.beans.TourPlace">
+		<property name="places">
+			<array>
+				<value>Mumbai</value>
+				<value>Kanyakumary</value>
+				<value>Goa</value>
+				<value>Ooty</value>
+			</array>
+		</property>
+	</bean>
+    
+    <bean id="agent"  class="com.lp.beans.TravelAgents"  autowire="byName" />
+
+</beans>

@@ -1,0 +1,13 @@
+
+SQL> create table naukri_app(nrid number(5) primary key,
+                                               name varchar2(20),address varchar2(20),
+                                               age number(10),gender varchar2(10),
+                                               qualification varchar2(10),college varchar2(30),
+                                               skills varchar2(40),experience number(10));
+
+Table created.
+
+
+SQL> create sequence nrid_seq start with 100 increment by 1;
+
+Sequence created.

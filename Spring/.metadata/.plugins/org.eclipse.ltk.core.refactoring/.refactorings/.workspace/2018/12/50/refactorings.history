@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;IOCProj34-LMI-BPP&apos; to &apos;IOCProj35-LMI-BPP&apos;" description="Rename resource &apos;IOCProj34-LMI-BPP&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/IOCProj34-LMI-BPP" name="IOCProj35-LMI-BPP" stamp="1544367829924" updateReferences="true"/>
+</session>

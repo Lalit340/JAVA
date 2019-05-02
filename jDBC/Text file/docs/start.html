@@ -1,0 +1,101 @@
+<html><head><TITLE>start.html - HXTT Text (CSV) JDBC Drivers for raw data, flat text, CSV file, TSV file, PSV file, fixed-length, and variable-length binary file v6.0</TITLE><meta name="keywords"  content="Text, JDBC, driver, TEXT JDBC, XOPEN SQLState, RMI, Jini, JNDI, type 4, jdbc drivers, jdbc driver, Java, sql, protocol, database, embedded, remote access, CSV, Personal Java, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body> 
+<p><font size="+1"><b>Chapter 1. Quick Start</b></font></p>
+<p><b>Index</b>: </p>
+<ol>
+  <li><a href="#capability">What Is the HXTT Text (CSV)?</a></li>
+  <li><a href="#follow">Follow Me</a></li>
+ </ol>
+<p><A name=capability>What Is the HXTT Text (CSV)?</a></p>
+<p>HXTT Text (CSV) provides a type 4 JDBC driver for raw data, flat text, CSV file, TSV file, PSV file, UTF file with/without BOM(byte-order marker), fixed-length, and variable-length binary file. It supports JDBC1.2, JDBC2.0, 
+JDBC3.0, JDBC4.0, JDBC4.1, and JDBC4.2. It supports Personal Java, JDK1.0.X, JDK1.1.X, JDK1.2.X, JDK1.3.X, 
+  JDK1.4.X, JDK1.5.X,  JDK1.6.X, JDK1.7.X, and JDK1.8.X. It supports all transactions level of READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, and SERIALIZABLE. It supports JBuilder's Database Pilot, Oracle's JVM, 
+  JDeveloper 10G, Dreamweaver UltraDev, Dreamweaver ColdFusion, ObJectRelationalBridge, 
+  DBVisualizer, iSQL-Viewer, AquaDataStudio, Sunopsis, MySQL Migration Toolkit, Tomcat, vqServer, Hibernate, SQuirreL SQL Client, Crystal Reports, Jisql, and 
+  DbEdit Database Utilites for Eclipse Platform. It supports XOPEN SQLState, RMI, 
+  Jini, JNDI, and serialization. It supports { UNION | INTERSECT | EXCEPT | MINUS } [ ALL ] query , INNER JOIN, FULL JOIN, LEFT JOIN, RIGHT JOIN, NATURAL JOIN, CROSS JOIN, self join, GROUP_CONCAT, multiple-row VALUES table, PIVOT table, UNPIVOT table, and subquery which includes single-row subquery, multirow subquery, multiple-column subquery, inline views, and correlated subquery. The current version of the HXTT Text (CSV) packages 
+  are available <a href="http://www.hxtt.com/download.jsp?product=text">here</a>:</p>
+<p><A name=follow>Follow Me</a></p>
+<p>First, you need to download JDK1.8.X from http://www.oracle.com if you use Text JDBC 4.2 package(Text_JDBC42.jar).  You can download JDK1.7.X or JDK1.8.X if you use Text JDBC 4.1 package(Text_JDBC41.jar).  You can download JDK1.6.X, JDK1.7.X, or JDK1.8.X if you 
+  use Text JDBC 4.0 package(Text_JDBC40.jar). You can download JDK 1.3.X, 1.4.X, or JDK1.5.X if you use Text JDBC 3.0 package(Text_JDBC30.jar). You can download JDK1.2.X too if you use Text JDBC 2.0 package(Text_JDBC20.jar). You can download JDK1.1.X too if you use Text JDBC 1.2 package(Text_JDBC12.jar). 
+</p>
+<p>Secondly, please add Text_JDBC42.jar, Text_JDBC41.jar, Text_JDBC40.jar, Text_JDBC30.jar, Text_JDBC20.jar or 
+  Text_JDBC12.jar to your Java class path, for instance, &quot;SET CLASSPATH=c:\javalib\Text_JDBC20.jar;%classpath%&quot;. 
+  You can also use &quot;java -classpath c:\javalib\Text_JDBC20.jar yourTextclass&quot; 
+  to run your class. More information about classpath, please read the &quot;Setting 
+  the Classpath&quot; topic in file:///yourdriver|/jdk1.2/docs/tooldocs/tools.html 
+  . You can use &quot;java -classpath c:\javalib\Text_JDBC20.jar yourTextclass&quot; 
+  too.</p>
+<p>Thirdly, you can use 'Class.forName(&quot;com.hxtt.sql.text.TextDriver&quot;).newInstance();' 
+  or Class.forName(&quot;com.hxtt.sql.text.TextDriver&quot;);' to load this driver.</p>
+<p>Fourth, if you have used other JDBC driver, you only need to know the correct 
+  URL format for DriverManager.getConnection(url,&quot;&quot;,&quot;&quot;); You 
+  can find the Text URL format below. If you were a Java novice, please 
+  read also other Java examples code in <a href="http://www.hxtt.com/download.jsp?product=text">Text_JDBC30demo.zip, Text_JDBC20demo.zip 
+  or Text_JDBC12demo.zip</a>.<br>
+  Text URL format:<br>
+<pre>
+        Embedded:
+                jdbc:text:[//]/[DatabasePath][?prop1=value1[;prop2=value2]] (You can omit that "//" characters sometimes)
+            or
+                jdbc:%csv:[//]/[DatabasePath][?prop1=value1[;prop2=value2]] (You can omit that "//" characters sometimes)
+            The only difference for two kinds of url format is: with jdbc:csv prefix, the default table type for CREATE TABLE is CSV.
+                        For example:
+                                "jdbc:text:/."
+                                "jdbc:text:/c:/data" for Windows driver
+                                "jdbc:text:///c:/data" for Windows driver
+                                "jdbc:text:////usr/data" for unix or linux
+                                "jdbc:text://///192.168.10.2/sharedir" for UNC path
+                                "jdbc:text:/./data"
+                                "jdbc:csv:/."
+                                "jdbc:csv:/c:/data"
+                                "jdbc:csv:////usr/data" 
+        Remote Access (client/server mode):
+                jdbc:text://host:port/[DatabasePath]
+            or
+                jdbc:csv://host:port/[DatabasePath]
+            The only difference for two kinds of url format is: with jdbc:csv prefix, the default table type for CREATE TABLE is CSV.
+                        For example: "jdbc:text://domain.com:3099/c:/data" if one TextServer is run on the 3099 port of domain.com
+        Compressed Database:(.ZIP, .JAR, .GZ, .TAR, .BZ2, .TGZ, .TAR.GZ, .TAR.BZ2) 
+                jdbc url format is the same as embedded url and remote url.
+                        For example:
+                                "jdbc:text:/c:/test/testtext.zip
+        Memory-only Database:
+                jdbc:text:/_memory_/
+        URL Database:(http protocol, https protocol, ftp protocol, sftp protocol)
+                jdbc:text:http://httpURL
+                jdbc:text:https://httpsURL
+                jdbc:text:ftp://ftpURL
+                jdbc:text:sftp://sftpURL
+                        For example:
+                                "jdbc:text:http://www.hxtt.com/test" ////Note: FTP site's user/password should be set in ftpURL, and cannot be set in JDBC connection property because user/password JDBC connection property belongs to server/client connection.
+				"jdbc:text:sftp://testa:123456@localhost"
+
+        SAMBA Database:(smb protocol)
+                jdbc:text:smb://[[[domain;]username[:password]@]server[:port]/[[share/[dir/]file]]][?[param=value]]
+                        For example:
+                                "jdbc:text:smb://test1:123@100.100.13.94/textfiles".zone" ////Note: SAMBA user/password should be set in SMB URL, and cannot be set in JDBC connection property because user/password JDBC connection property belongs to server/client connection.
+	Free JDBC url:(Warning: only use it for special project)
+                jdbc:text:/" or "jdbc:text:///". Then you can use some full UNC path names in SQL to visit anywhere where your Java VM has right to access.
+                        For instance:
+                                select * from \\amd2500\e$\textfiles\test;
+                                elect * from "\\amd2500\d$\textiles".test;
+                                select * from ".".test;
+
+         HXTT Text (CSV) supports seamlessly data mining on memory-only table, physical table, url table, compressed table, SAMBA table in a sql. More details
+         is in Advanced Programming chapter.
+
+</pre>
+  <br>
+Last, Text driver is a standard JDBC driver so that you will find most 
+of valuable information at file:///yourdrive|/jdk1.2/docs/api/java/sql/package-frame.html 
+. 
+<p>Text supports SQL-92. It supports { UNION | INTERSECT | EXCEPT | MINUS } [ 
+  ALL ] query , INNER JOIN, FULL JOIN, LEFT JOIN, RIGHT JOIN, NATURAL JOIN, CROSS 
+  JOIN, self join, GROUP_CONCAT, and subquery which includes single-row subquery, multirow subquery, multiple-column 
+  subquery, inline views, and correlated subquery. The major syntax is listed 
+  at <a href=sqlsyntax.html>here</a>.</p>
+<p>Text driver will use index to speed up the query which contains some 
+  indexed expressions. Text supports utilizing index file for LIKE, BETWEEN, IN, DISTINCT, ORDER, and some OR operations.
+</p>
+<BLOCKQUOTE>&nbsp;</BLOCKQUOTE>
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>

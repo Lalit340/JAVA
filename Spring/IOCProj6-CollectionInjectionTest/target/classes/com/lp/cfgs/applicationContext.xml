@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+     <!-- load the cfgs class -->
+     <bean  id="stud"  class="com.lp.beans.StudentArray">
+         <property name="marks">
+             <array>
+             <value>50</value>
+             <value>60</value>
+             <value>80</value>
+             </array>
+         </property>
+   <property name="date">
+             <array>
+             <ref bean="dtSys"/>
+             <ref bean="dtDOB"/>
+             <ref bean="dtDOJ"/>
+             </array> 
+             </property>
+       </bean>
+       
+     <bean id="dtSys" class="java.util.Date"/>
+    
+      <bean id="dtDOB"  class="java.util.Date">
+           <property name="year"  value="92" />
+           <property name="month" value="5"/>
+           <property name="date"   value="11"/>
+      </bean> 
+            <bean id="dtDOJ"  class="java.util.Date">
+           <property name="year"  value="114" />
+           <property name="month" value="10"/>
+           <property name="date"   value="18"/>
+      </bean> 
+      
+      <!--college class loaded  -->
+      <bean id="clg"  class="com.lp.beans.CollegeList">
+      <property name="list">
+            <list>
+                 <value>raja</value>
+                <value>lalit</value>
+                <value>rani</value>
+            </list>
+      </property>
+      <property name="dates">
+           <list>
+                <ref bean="dtSys" />
+           </list>
+      </property>
+      
+      </bean>
+      
+      <bean id="clr"  class="com.lp.beans.ColorSetTest">
+         <property name="sets">
+            <set>
+            <value>Raja</value>
+            <value>Ramesh</value>
+            <value>rani</value>
+            </set>
+          </property>
+          <property name="date">
+          <set>
+          <ref   bean="dtSys"/>
+          </set>
+          </property>
+      </bean>
+      
+      <bean id="teach"   class="com.lp.beans.TeacherSubMapTest">
+          <constructor-arg name="teachers">
+          <map>
+          <entry>
+          <key><value>hk</value></key>
+          <value>corejava</value>
+          </entry>
+          <entry>
+          <key><value>nataraz</value></key>
+          <value>Adva.java</value>
+          </entry>
+          
+          </map>
+          </constructor-arg>
+      </bean>
+      
+</beans>

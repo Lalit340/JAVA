@@ -1,0 +1,16 @@
+
+<h1 style="color:brown;text-align:center">Marriage Bureau</h1>
+<br>
+<script language="javascript" src="jscript/marriage.js">
+</script>
+<br>
+<br>
+<form name="frm" action="murl" method="POST" onsubmit="return validate(this)">
+   Person name :: <input type="text" name="pname"><span id="nameErr" style="color:red"></span> <br>
+    Person age   ::  <input type="password" name="page"><span id="ageErr" style="color:red"></span> <br>
+    Gender         ::   <input type="radio"  name="gender"  value="M">Male &nbsp;&nbsp;
+                               <input type="radio"  name="gender" checked value="F">Female &nbsp;&nbsp; <br>
+                             <!--Hidden box  -->
+                               <input type="hidden"  name="vflag"  value="no"> <br>
+                               <input type="submit"  value="Check here RU Eligible or Not">
+</form>

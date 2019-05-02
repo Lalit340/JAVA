@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 elements from project &apos;IOCProj36-FactoryBean&apos;&#x0D;&#x0A;- Original project: &apos;IOCProj36-FactoryBean&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     IOCProj36-FactoryBean/src/main/java/com.lp.bo&#x0D;&#x0A;     IOCProj36-FactoryBean/src/main/java/com.lp.bpp&#x0D;&#x0A;     IOCProj36-FactoryBean/src/main/java/com.lp.dao&#x0D;&#x0A;     IOCProj36-FactoryBean/src/main/java/com.lp.service" description="Delete elements" element1="/src\/main\/java&lt;com.lp.service" element2="/src\/main\/java&lt;com.lp.dao" element3="/src\/main\/java&lt;com.lp.bpp" element4="/src\/main\/java&lt;com.lp.bo" elements="4" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1544547371392" subPackages="false" version="1.0"/>
+</session>

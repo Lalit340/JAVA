@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-dependency-check="simple"  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<!-- cfg  Dependent class -->
+	<bean id="mb" class="com.lp.beans.Mobile" dependency-check="default">
+		<property name="number"  value="9696874565"  />
+		<property name="imei"  value="74565124" />
+		<property name="brand"  value="MOto" />	
+		</bean>
+    <bean id="cal" class="java.util.Calendar"  factory-method="getInstance" />
+<!--  cfg Target class -->    
+    <bean id="pfm"  class="com.lp.beans.PersonImf"   dependency-check="none">
+    <property name="adharNo" value="45123645" />
+     <property name="name" value="raja" />
+      <property name="age" value="21" />
+       <property name="mob" ref="mb" />
+        <property name="cal" ref="cal" />
+    </bean>
+
+</beans>

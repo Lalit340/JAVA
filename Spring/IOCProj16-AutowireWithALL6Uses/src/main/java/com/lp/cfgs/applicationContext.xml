@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="default" default-autowire-candidates="st2" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+
+	<!-- cfg  Dependent class -->
+	<bean id="st1" class="com.lp.beans.Student" primary="true">
+		<property name="students">
+			<array>
+				<value>Reshma</value>
+				<value>Pragya</value>
+				<value>Roshni</value>
+				<value>Akhil</value>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id="st2" class="com.lp.beans.Student">
+		<property name="students">
+			<array>
+				<value>Monohar</value>
+				<value>ramesh</value>
+				<value>ganesh</value>
+				<value>Swetta</value>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id="st" class="com.lp.beans.Student" >
+		<property name="students">
+			<array>
+				<value>Hayati</value>
+				<value>Abantika</value>
+				<value>Ananya</value>
+				<value>Barsha</value>
+			</array>
+		</property>
+	</bean>
+    
+    <bean id="cal" class="java.util.Calendar"  factory-method="getInstance" />
+<!--  cfg Target class -->    
+    <bean name="college,clg"  class="com.lp.beans.JuniorCollege" autowire="byType" />
+
+</beans>

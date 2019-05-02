@@ -1,0 +1,52 @@
+
+
+
+
+
+
+
+#select _rowid_,* from Sheet1;
+
+
+#select * from Sheet1 where _rowid_=3;
+
+
+#select * from Sheet1 where _rowid_=333;
+
+
+#select * from Sheet2;
+
+#select sheet1.a,sheet2.b from sheet1,sheet2 where sheet1.c=sheet2.c;
+
+#select sheet1.a from sheet1 where _rowid_ between 3 and 10;
+
+#update sheet1 set a=8 where _rowid_=5;
+
+
+#insert into sheet1 (c) values('aaaaeee');
+
+#delete from sheet1 where _rowid_=10;
+
+#CREATE CATALOG testsubdir;
+
+#create database if not exists testxls; 
+#create database testxls; 
+
+#RENAME table testxls.sheet1 to mySheetName;
+#RENAME table testxls.sheet1 to sheet2;
+
+#create table testxls.abc (efg varchar(10));
+#drop table testxls.sheet2;
+
+#select * from testxls.abc;
+
+#drop table testxls.abc;
+
+
+
+
+
+
+
+
+

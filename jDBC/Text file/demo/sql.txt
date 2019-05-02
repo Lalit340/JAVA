@@ -1,0 +1,41 @@
+create table if not exists test (number1 numeric(12,3),boolean1 boolean, clob1 clob,blob1 blob, char1 varchar(25),date1 date, time1 timestamp);
+
+create catalog if not exists textfiles
+
+CREATE TABLE if not exists textfiles.TEST1 (COMPANY CHAR(24),_StuffedColumn char(1) default '|', CITY CHAR(4), _StuffedColumn char(1) default '|', POSTCODE NUMERIC(8,0), comment varchar(32),_StuffedColumn char(2) default '\r\n')
+INSERT INTO textfiles.TEST1 (COMPANY,CITY,postcode) VALUES('ABC','EFGH',321)
+INSERT INTO textfiles.TEST1 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsdddddfsdfs')
+INSERT INTO textfiles.TEST1 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsdddddfsdfs')
+delete from textfiles.TEST1 where recno()=2
+update textfiles.TEST1 set postcode='123456' where recno()=3
+SELECT recno(),COMMENT FROM textfiles.TEST1
+
+CREATE TABLE if not exists textfiles.TEST2 (COMPANY CHAR(24), CITY CHAR(40), comment varchar(32), POSTCODE NUMERIC(8,0), _CSV_Separator char(1) default ';', _CSV_Quoter char(1) default '"', _CSV_Header boolean default true)
+#select * from textfiles.test2
+INSERT INTO textfiles.TEST2 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsddddddddddddddssssdsfdfsdfs')
+INSERT INTO textfiles.TEST2 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsddddddddddddddssssds"fdfsdfs')
+INSERT INTO textfiles.TEST2 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsddddddddddddddssssds"fdfsdfs')
+delete from textfiles.TEST2 where recno()=2
+update textfiles.TEST2 set postcode='123456' where recno()=3
+update textfiles.TEST2 set postcode='123456' where recno()=4
+update textfiles.TEST2 set postcode='123' where recno()=5
+select recno(),* from textfiles.TEST2
+
+
+
+CREATE TABLE if not exists textfiles.test3 (COMPANY CHAR(24), CITY CHAR(40), comment varchar(32), POSTCODE NUMERIC(8,0), _CSV_Separator char(1) default '\t', _CSV_Quoter char(1) default '"', _CSV_Header boolean default true)
+#select * from textfiles.test3
+INSERT INTO textfiles.test3 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsddddddddddddddssssdsfdfsdfs')
+INSERT INTO textfiles.test3 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsddddddddddddddssssds"fdfsdfs')
+INSERT INTO textfiles.test3 (COMPANY,CITY,comment) VALUES('ABC','EFGH','sfsddsddddddddddddddssssds"fdfsdfs')
+delete from textfiles.test3 where recno()=2
+update textfiles.test3 set postcode='123456' where recno()=3
+update textfiles.test3 set postcode='123456' where recno()=4
+update textfiles.test3 set postcode='123' where recno()=5
+select recno(),* from textfiles.test3
+
+
+
+
+
+

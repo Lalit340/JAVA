@@ -1,0 +1,791 @@
+<html><head><TITLE>faq.html - HXTT Text (CSV) JDBC Drivers for raw data, flat text, CSV file, TSV file, PSV file, fixed-length, and variable-length binary file v6.0</TITLE><meta name="keywords"  content="Text, JDBC, driver, RMI, JNDI, type 4, jdbc drivers, jdbc driver, Java, sql, protocol, datasource, database, ResultSet, embedded, remote access, CSV, BIN, Personal Java, Codebase, PDF, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<p><font size="+1"><b>FAQ for HXTT Text (CSV) Packages of type 4 JDBC Driver for raw data, flat text, CSV file, TSV file, PSV file, fixed-length, and variable-length binary file</b></font></p>
+<p> The most recent version of this document can be viewed at <a href="http://www.hxtt.com/text/">here</a>.</p>
+<p><font size="+1"><b>Table of Contents</b></font></p>
+<ol>
+  <li><a href="#general">General Questions</a></li>
+  <li><a href="#applet">Applet Questions</a></li>
+  <li><a href="#remote">Remote Access Questions and Client/Server Mode Questions</a></li>
+  <li><a href="#sql">SQL Questions</a></li>
+  <li><a href="#index">Index Questions</a></li>
+  <li><a href="#performance">Performance Questions</a></li>
+  <li><a href="#concurrence">Concurrence Questions</a></li>
+  <li><a href="#internationalization">Internationalization Questions</a></li>
+  <li><a href="#interoperability">Interoperability Questions</a></li>
+   </ol>
+<p><A name=general>General Questions</a></p>
+<p><b>1. How to know the detailed version information of HXTT Text (CSV) package?</b><br>
+  1st way: "java com.hxtt.sql.text.TextDriver" will print that information.<br>
+  2nd way: check that MANIFEST.MF file in jar file.<br>
+</p>
+<p><b>2. Can I use it in an iSeries OS/400 IBM machine that has Java 1.4 running 
+  in it?</b><br>
+  The HXTT Text (CSV) packages can run on any platform with Java VM, which includes Microsoft 
+  Windows, Novell Netware, OS2, UNIX, and LINUX. It supports Personal Java, JDK1.0.X, 
+  JDK1.1.X, JDK1.2.X, JDK1.3.X, JDK1.4.X, JDK1.5.X,  JDK1.6.X, JDK1.7.X, and JDK1.8.X. It supports JDBC1.2, JDBC2.0, JDBC3.0,  JDBC4.0, JDBC4.1, and JDBC4.2 now.</p>
+<p><b>3. What is difference between the HXTT Text (CSV) Package, Embedded Package, 
+  and Remote Access Package</b>? <b>Can I get some sample code to use the HXTT Text (CSV)?</b><br>
+  The HXTT Text (CSV) supports Embedded and Remote Access. HXTT Text (CSV) Package includes a Database GUI manager. If you're accessing the local data, you can use the HXTT Text (CSV) Package or Embedded Package. If 
+  you're accessing the remote data, you can use the HXTT Text (CSV) Package or Remote 
+  Access Package. There is no any difference for your code to use anyone of three 
+  packages. Please download the demo package from <a href="http://www.hxtt.com/download.jsp?product=text">here</a>.</p>
+<p><b>4. What causes the 'No suitable driver' SQLException?</b><br>
+  This error usually occurs during a call to DriverManager.getConnection(). The 
+  cause can be failing to load the appropriate JDBC driver before calling getConnection(), 
+  or specifying an invalid JDBC URL that isn't recognized by your JDBC driver. 
+  If you're using a trial version, you will get &quot;No suitable driver&quot; 
+  SQLException, and &quot;Evaluation period over&quot; after using about 30 days. 
+  The HXTT Text (CSV) driver's name is com.hxtt.sql.text.TextDriver, and its JDBC URL:</p>
+<pre>
+        Embedded:
+                jdbc:text:[//]/[DatabasePath][?prop1=value1[;prop2=value2]] (You can omit that "//" characters sometimes)
+                        For example:
+                                "jdbc:text:/."
+                                "jdbc:text:/c:/data"
+                                "jdbc:text:////usr/data" for unix or linux:
+                                "jdbc:text:/./data"
+        Access by Text Server: Skip it if you don't use TCP, RMI or JINI.
+                jdbc:text://host:port/[DatabasePath]
+                        For example: "jdbc:text://domain.com:3099/c:/data" if one TextServer is run on the 3099 port of domain.com
+</pre> 
+<p><b>5. How to setup Text url on the Novell Server?<br>
+  </b>Text driver can run on Novell server. You can use directly access 
+  or TextServer to visit your data on Novell server. If your Text 
+  files is at sys:/java/yourdata, the direct URL should be:<br>
+  jdbc:text:///sys:/java/yourdata <br>
+  or<br>
+  jdbc:text:////java/yourdata</p>
+<p><b>6. I got &quot;java.io.IOException: Permission denied&quot; sometimes for 
+  my SELECT query.</b><br>
+  Please figure out what directory Java's java.io.tmpdir system property points 
+  to, and make sure that directory is writable by the user that runs your Java 
+  applications, otherwise you should set tmpdir properity in Connection properity 
+  to a writable directory. tmpdir properity indicates whether set a temp directory, 
+  Default: the value of JVM's &quot;java.io.tmpdir&quot; property. If that value 
+  is incorrect, uing the directory of JDBC url. <br>
+</p>
+<p><b>7. When I used jdbc:text:/&lt;DatabasePath&gt;, the connection's 
+  schema was empty. &quot;create catalog if not exists textfiles&quot;. 
+  What is Catalog?</b><br>
+  Text's schema is always empty. You can use catalog to query subdirectory. 
+  Catalog means a directory, which contains some Text files. </p>
+<p><b>8. Can HXTT Text (CSV) support JDK 1.0.2?</b><br>
+  Yeah. You need to download JDBC 1.22 from the Sun's JDBC download page and add 
+  JDBC1.22 into JDK 1.0.2. HXTT Text (CSV) hasn't be tested on JDK1.0.X since we have 
+  not received such a complement request from our users. If you meet any problem, 
+  please let us know.</p>
+<A name=definetable></a> 
+<p><b>9. What kind of text files are you able to read now?</b><br>
+  It can read any flat files with a fixed length, variable length or CSV file. 
+  The only key is how to use &quot;CREATE TABLE&quot; to define a table structure. If you're using CSV file, you can access your data without any predefined CREATE TABLE sql. 
+  If you have many prepared table definition sqls, you can set &quot;schemaFile&quot;(standard sql)
+   and &quot;odbcSchemaFile&quot;(odbc compatible ini file)
+  properity for connection, then Text driver will load automatically those table 
+  definitions. If you don't know too much about your data file, we can write special 
+  demo code to show how to fetch data from your text file and csv file.</p>
+<p> <b>10. In my text file, there is some variable-length field which ends with a special string.</b><br>
+     For example,a filed ends with "aaa"
+     CREATE TABLE IF NOT EXISTS INTRANSIT (office char(6) default 'OFFICE',_StuffedColumn char(1) default ' ',description longvarchar default 'aaa'); 
+     or   a filed ends with "aaa",another field ends with "\r\n"
+     CREATE TABLE IF NOT EXISTS INTRANSIT (office char(6) default 'OFFICE',_StuffedColumn char(1) default ' ',description longvarchar default 'aaa',
+                                           information longvarchar default '\r\n'); 
+     This variable-length file function should support any regular format data. 'pascalstring' is a special default value,  which can be used to read correctly Pascal style string.
+     You must assign the end string to the LONGVARCHAR(LONGVARBINARY) fileds in the table. 
+     If you need more inforatmion on how to utilize that function, please email us.        
+ </p> 
+<p> <b>11. How to use &quot;CREATE TABLE&quot; to define a table structure for 
+  flat file with a fixed length?</b><br>
+  For instance, <i>CREATE TABLE if not exists chk (businessmode CHAR(14),&quot;first 
+  name&quot; char(16), &quot;last name&quot; char(18), company char(50), trade 
+  CHAR(35), address char(30), address2 char(30), city char(19), flag char(2),ID 
+  char(7), serialNO numeric(6,0),_StuffedColumn char(2) default '\r\n')</i> will 
+  define a chk table structure, which the total row length is 229 byte. _StuffedColumn 
+  is a special column, which can be used to ignore all noise columns. For instance, 
+  you can use &quot;_StuffedColumn char(8) default 'abceed\r\n'&quot;, or '_StuffedColumn 
+  char(8)&quot; to ignore 8 byte information of every row. Default value can be 
+  omitted, or be a expression. The stuffed column of inserted new row will be 
+  set with the default value. BTW, for variable-length file, you shoud use longvarchar 
+  or longvarbinary with default value to indicate its terminator signature.</p>
+<p><b>12. How to use &quot;CREATE TABLE&quot; to define a table structure for 
+  csv file?</b><br>
+  For insatnce, <i>CREATE TABLE chk (businessmode CHAR(14),&quot;first name&quot; 
+  char(16),&quot;last name&quot; char(18), company char(50),trade CHAR(35), address 
+  char(30), address2 char(30), city char(19), flag char(2),ID char(7),serialNO 
+  numeric(6,0),_CSV_Separator char(1) default ',', _CSV_Quoter char(1) default 
+  '&quot;',_CSV_Header boolean default false)</i> will define a csv table called 
+  chk.<br>
+  _CSV_Separator, _CSV_EOL, _CSV_Quoter, _CSV_Header, _CSV_Comment, and _CSV_ColumnCount4EmptyFile, are special columns, which can 
+  be used to define a different value from connection properites. _CSV_Separator 
+  specifies a character used to separate the values of the fields. _CSV_EOL specifies 1~2 character sequence to terminate one line. _CSV_Quoter 
+  specifies a character used to quote the string value. _CSV_Header indicates 
+  whether the first record of CSV file to consist of the names of the fields in 
+  the data following. _CSV_Comment specify whether ther're some comment lines before csv header and data rows. If you use n (integer values), the first n lines will be ingored as comment. If you use some paragraphs, these paragraphs will be used for csv file creation, the total line number of comment will be used for existent file. _CSV_ColumnCount4EmptyFile specifies the default column count for an empty text file without header information and data rows. <br>
+  Text supportes to access CSV table without CREATE TABLE too. For instance:<br>
+<pre>
+      Properties props=new Properties();
+      props.put("_CSV_Header","true");
+
+      Connection con = DriverManager.getConnection(url,props);
+      Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+
+      ResultSet rs = stmt.executeQuery("select * from pcfull2");  
+  </pre>
+<p><b>13. Do you have one table definition sql for opening existing tables?</b><br>
+  You can use &quot;CREATE TABLE&quot; although your table exists. Then Text driver 
+  will use those table definition to access your data. If you have many prepared 
+  table definition sqls, you can set &quot;schemaFile&quot; properity for connection, 
+  then Text driver will load automatically those table definitions. </p>
+
+
+<p><b>14. Is there any way to have the HXTT Text (CSV) driver use the first row of the 
+  text file for setting the column names of the resulted recordset for a SELECT 
+  query?</b><br>
+  Text supports to use the first row of CSV file as column name. For instance:<br>
+  Properties props=new Properties();<br>
+  props.put(&quot;_CSV_Header&quot;,&quot;true&quot;);<br>Connection con 
+  = DriverManager.getConnection(url,props);</p>
+
+<p><b>15. How can we skip some header lines from a text file, say with some report header (My Project Budget)?</b><br>
+  Text supports to skip some comment lines before csv header and data rows. If you use n (integer values), the first n lines will be ingored as comment. If you use some paragraphs, these paragraphs will be used for csv file creation, the total line number of comment will be used for existent file. For instance:<br>
+  Properties props=new Properties();<br>
+  props.put(&quot;_CSV_Comment&quot;,&quot;3&quot;);<br>
+  //Or  props.put(&quot;_CSV_Comment&quot;,&quot;Product report for FY 1996\r\n- - - - - - - - - - - - 
+\r\n\r\n&quot;);<br>
+  Connection con  DriverManager.getConnection(url,props);<br><br>
+
+
+create table FY1996 (_CSV_Separator char(1) default ',', _CSV_Quoter char(1) default null,_CSV_Header boolean default true,_CSV_Comment longvarchar default 'Product report for FY 1996\r\n- - - - - - - - - - - - \r\n\r\n');<br>
+
+
+create table FY1996 (_CSV_Separator char(1) default ',', _CSV_Quoter char(1) default null,_CSV_Header boolean default true,_CSV_Comment longvarchar default 3);
+
+<br>
+  
+</p>
+
+<p><b>16. When I create new tables or opening existing tables,should I use the 
+  whole file name or just the file name without the extensions?</b><br>
+  For .bin and .csv, you needn't to quote extentsion. For your CHK.TXT, you have 
+  to use &quot;select * from \&quot;chk.txt\&quot;&quot;. Another way is to use 
+  &quot;select * from chk&quot;, after using &quot;fileExtension&quot; properity: 
+  <br>
+  Properties properties = new Properties();<br>
+  properties.setProperty(&quot;fileExtension&quot;, &quot;txt&quot;);//If your 
+  CHK.TXT is a text table<br>
+  //properties.setProperty(&quot;csvfileExtension&quot;, &quot;txt&quot;);//If 
+  your CHK.TXT is a csv table<br>
+  Connection con = DriverManager.getConnection(url, properties);</p>
+<p> sql=&quot;CREATE TABLE if not exists chk (businessmode CHAR(14),...&quot;;</p>
+<p>Please note that &quot;CREATE TABLE&quot; should use &quot;chk&quot;, not &quot;\&quot;chk.txt\&quot;&quot;, 
+  since you have set the default file extension.</p>
+<p><b>17. When I created a new table, I used &quot;create table \&quot;chk_presort.txt\&quot; 
+  ....&quot;, the resulting file is actually chk_presort.txt.bin.</b><br>
+  It's resulted by the default BIN suffix. You should use:<br>
+  Properties properties = new Properties();<br>
+  properties.setProperty(&quot;fileExtension&quot;, &quot;txt&quot;);<br>
+  Connection con = DriverManager.getConnection(url, properties);</p>
+<p> sql=&quot;create table chk_presort ...&quot;;</p>
+<p> <b>18. In my text file, the first and second records have such a huge seperation.</b><br>
+  It's resulted by deleted row, since there's not a standard for empty text row. 
+  If you don't delete/update your row frequently, there won't be too much empty 
+  row.</p>
+<p> <b>19. I have three csv files which have the same file name and different suffix in the same directory. How to access those files?</b><br>
+  For instance, you can use create table "a.txt" (_CSV_Header boolean default true);create table "a.lst"  (_CSV_Header boolean default false, _CSV_Separator char(1) default '\t' );create table "a.csv"  (_CSV_Comment longvarchar default 3 );<br>
+  select * from "a.txt" as atxt,"a.lst" as alst, "a.csv" as acsv</p>
+  
+<p></p>
+<p><A name=applet>Applet Questions</a></p>
+<p><b>1. I already configured the .java.policy for my applet, but I continue with 
+  problems of &quot;acess denied&quot;.</b><br>
+  For instance, you're using &quot;jdbc:text:/C:/test&quot;, and grant 
+  codeBase &quot;file:/C:/test&quot; in your policy file, but your applet is running 
+  from &quot;D:\sample\CargaStatApplet.html&quot;. You should grant codeBase &quot;file:/D:/sample&quot;, 
+  not &quot;file:/c:/test&quot;.</p>
+<p><b>2. http://localhost:8080/jdbcapplet.html, the applet started but returns 
+  a Classnotfound com.hxtt.sql.text.TextDriver error in the gui list.</b><br>
+  Please add a codebase tag. For instance, &quot;&lt;applet code=&quot;jdbcapplet.class&quot; 
+  codebase=&quot;Text_Remote_Access_JDBC20.jar&quot;&gt;&lt;/applet&gt;&quot;. 
+  The Text_Remote_Access_JDBC20.jar should be at the same directory of 
+  jdbcapplet.html.</p>
+<p><A name=remote>Remote Access Questions and Client/Server Mode Questions</a></p>
+<p><b>1. Client/Server mode question: The data directory is not in the IBM machine where the Java program should 
+  run, but instead those Text files are in another machine with Windows 
+  operating system.</b><br>
+  com.hxtt.sql.admin.Admin provides a GUI manger for <a href="http://www.hxtt.com/text/dbadmin.html">Text server</a>. For instance, you wish to provide JDBC3.0 remote data access. Please use &quot;java -cp yourdirectrory/Text_JDBC30.jar 
+  com.hxtt.sql.admin.Admin&quot; to start GUI manager, and add a url setting of 
+  '&quot;jdbc:text://10.32.90.48:&quot; + 8029 +&quot;/&quot;+databaseDirectory' 
+  on your host of 10.32.90.48(just an IP sample), then click Start button. Third, 
+  you can use 'String url =<br>
+  &quot;jdbc:text://10.32.90.48:&quot; + 8029 +&quot;/&quot;+databaseDirectory;' 
+  to visit your Text database from your IBM machine. If you're running 
+  that GUI manager on &quot;yourNT.com&quot; host to visit &quot;c:/database&quot; 
+  directory, you can use &quot;jdbc:text://yourNT.com:8029/c:/database&quot; 
+  on your web application. jdbc:text://yourNT.com:8029/c:/database?user=oneuser&password=onepassword can provide a simply user/password verification for client/server mode. If you wish to write a secure Text server 
+  for some sensitive information, embedded encrypt/decrypt functions can help 
+  you.</p>
+<p><b>2. Remote access through map network drive question: How to remote access Text data without TextServer?</b><br>
+  You can share your remote directory which contains your data files, then map 
+  it to a local driver.<br>
+  For Windows: You can connect remote Text database 
+  by sharing the directory and map it to local drive. You should disable the OPLOCKS of your Samba/NT/2000 server. How to turn off opportunistic locking in windows on client and on server side? This is done by manipulating the following registry key:<br>
+<pre>
+For client side: oplocks.reg file
+REGEDIT4
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MRXSmb\Parameters]
+"OplocksDisabled"=dword:00000001
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]
+"UseOpportunisticLocking"=dword:00000000
+
+For server side: oplocksServer.reg
+REGEDIT4
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters]
+"EnableOplocks"=dword:00000000
+
+You should put additional registry entry like e.g.
+The following registry entries disable opportunistic locking and caching:
+HKey_Local_Machine \ System \ CurrentControlSet \ Services \ LanmanServer \ Parameters \ EnableOpLocks must be set to 0.
+HKey_Local_Machine \ System \ CurrentControlSet \ Services \ LanmanServer \ Parameters \ CachedOpenLimit must be set to 0.
+HKey_Local_Machine \ System \ CurrentControlSet \ Services \ LanmanWorkStation \ Parameters \ UseOpportunisticLocking must be set to 0.
+HKey_Local_Machine \ System \ CurrentControlSet \ Services \ LanmanWorkStation \ Parameters \ UtilizeNtCaching must be set to 0. 
+
+</pre>
+  For Linux: You can use mounting. One user uses Samba to maped NTFS partitions 
+  in Linux servers, and Text driver works normally like mapping any mount 
+  point in Linux.<br>
+  For Novell: You can map NCP directory as driver or mount NCP directory.</p>
+<p><b>3. Remote access through UNC path question: Can I setup only one datasource to access four servers for my Cold Fusion?<br>
+  </b>
+To access one unc path, you can use jdbc:text:/\\PC17\c$\values or jdbc:text:/\\PC17\val.<br>
+To access four unc pathes in the same connection, you need to use a free JDBC url, &quot;jdbc:text:/&quot; or &quot;jdbc:text:///&quot;. 
+  Then you can use some full UNC path names in SQL to visit your four servers where your Java VM has right to access.. 
+  For instance:</p>  
+<pre>
+  select * from \\amd2500\e$\textfiles\test;
+  select * from "\\amd2500\d$\textiles".test;
+  select * from ".".test;
+  </pre>
+<p><b>4. Remote access through http/https/ftp protocol question: How to let my program to fetch data daily from our web host?</b><br>
+<p>You need to use <a href="http://www.hxtt.com/text/advanced.html#mining">url database</a>, which supports http protocol, https protocol, ftp protocol, and sftp protocol. 
+</p>
+<p><b>5. Remote access through SAMBA protocol question: How to let my servlet on Linux to access over 300 hundred shared folders that all are on Windows boxes</b><br>
+<p>You need to use <a href="http://www.hxtt.com/text/advanced.html#mining">SAMBA table</a>, which needn't to map or mount driver. 
+</p>
+<p><b>6. I can't get the <a href="http://www.hxtt.com/text/dbadmin.html">com.hxtt.sql.admin.Admin</a> runnig for internet --&gt; intranet </b><br>
+  HXTT Text supports port mapping and NAT route. Let HXTT Text listening a port on the database server, and modify your route table or NAT table to map an external port to that internal port. You can use &quot;start java -Djava.security.policy=policy com.hxtt.sql.admin.Admin&quot; 
+  to start GUI manager. You should add a remote url, for instance, jdbc:text://localhost:8029/d:/dbffiles,
+  and click Start button to start that server. Then on your internet client side, you can use jdbc:text://externalIP:8029/d:/dbffiles to access your intranet host. externalIP means an external IP or domain name address of your gateway or database server.<br>
+ BTW, except for TCPServer protocol, HXTT Text can use also RMIServer protocol. For instance, you have used "start rmiregistry 1099 -J-Djava.security.policy=yourPolicyFile" to startup your rmi service. Then you can use jdbc:text://localhost:1099/d:/dbffiles?serverType=RMIServer to let HXTT Text bind remote service in registry. The key is use "java -Djava.security.policy=policy -Djava.rmi.server.hostname=externalIP com.hxtt.sql.admin.Admin RMISERVER 8029" to start your server. RMIServer protocol is slower much than the default TCPServer protcol.</p>
+<p><b>7. I would like to start a server (TCP) from our application, instead of <a href="http://www.hxtt.com/text/dbadmin.html">DBAdmin</a>. I need to be able to programmatically tell the application which profile to start.</b><br>
+Please read <a href='openapi.html#startserver'>Start/Stop Server Programmatically</a>.
+</p>
+<p><b>8. Is there a way to specify a file path in the url that will connect to 
+  a mapped drive in Windows 2000. ie drive \\gomer\pyle\db which is mapped to 
+  f drive on the server.</b><br>
+  Text driver can work with mapped driver, and you should use &quot;jdbc:text:/f:&quot; 
+  to access your data. </p>
+ <font color=red>Note: If you're using a database file through a UNC path or a mapped drive of Windows, there is a Windows Security restriction. If you run ColdFusion (Tomcat, or tanuki sw wrapper) as a service on Windows, it operates by default as System, and cannot access directories on a remote system or mapped drive; to resolve this issue, do not run ColdFusion (Tomcat, or tanuki sw wrapper) using the local system account.</font><br>
+<p><b>9. When I click Start button to start a remote service, I get a security 
+  excaption: access denied (java.net.SocketPermission 127.0.0.1:8029 connect,resolve)</b><br>
+  You have to enable java.net.SocketPermission right in your policy file if you<br>
+  run a Text server. Please read<br>
+  file:///yourdriver|/jdk1.2/docs/guide/security/PolicyFiles.html for more<br>
+  information about policy file. It is unnecessary to know the specific content<br>
+  of a policy file, since you can use policy tool to create and maintain your<br>
+  policy files. Please read<br>
+  file:///yourdriver|/jdk1.2/docs/tooldocs/win32/policytool.html for policy tool.</p>
+<p><b>10. How to start remote service as MS Windows service and Linux(Solaris) Daemon?</b><br>
+   Please read <a href=advanced.html#daemon>Run HXTT Text (CSV)Server as Windows Service or Linux(Solaris) Daemon</a>.
+</p>
+<p><b>11. How to start remote control when TextServer is running as Windows service or Linux(Solaris) Daemon?</b><br>
+  You can use "java com.hxtt.sql.admin.Admin TCPCLIENT [host:]port [remoteControlPassword]" to start your remote control.</br>
+</p>
+<p><A name=sql>SQL Questions</a></p>
+<p><b>1. I need to use tables stored in <b>a subdirectory</b>.</b><br>
+  table-name: [catalog.]tableName <br>
+  For instance, you have many Text files on c:\data. You can use &quot;jdbc:text:/c:/data&quot; 
+  as JDBC url. Then you can use &quot;select * from subdirectory1.table1&quot; 
+  to visit table1 file at subdirectory1. For instance, &quot;select tableAlias.* 
+  from &quot;sales/2004/04&quot;.sale as tableAlias&quot; can access sale table at &quot;c:\data\sales\2004\04&quot;.</p>
+<p><b>2. </b><b>I can't use &quot;select RIGHT from deldob&quot;</b><br>
+  RIGHT is a reserved SQL keyword. &quot;variableName&quot;, [variableName] or 
+  {v 'variableName'} is used to quote those columns which use reserved keyword, 
+  so that you should use &quot;RIGHT&quot; or {v 'RIGHT'} to quote the RIGHT field, 
+  for instance, <i>select {v 'RIGHT'},'other' from states where &quot;RIGHT&quot;=32</i>. 
+  HXTT Text (CSV) supports using DATE, TIME, TIMESTAMP, GROUP, ORDER, KEY, DESC, UPDATE 
+  directly in SQL, although they're reserved words too.<br>
+</p>
+<p><b>3. Can I get an example on how to do a query involving a boolean value. 
+  eg. &quot; Select * from tableName where exported = true&quot;, where exported 
+  is a boolean column in a Text file.</b><br>
+  Supports. You can use &quot;select * from tableName where exported&quot; too. 
+  All of NOT, AND, and OR operation are supported.</p>
+<p><b>4. How to specify dates?</b><br>
+  Please use SQL Escape Syntax, a date is specified in a JDBC SQL statement with 
+  the syntax {d `yyyy-mm-dd'} where yyyy-mm-dd provides the year, month, and date, 
+  e.g. 1996-02-28. There are analogous escape clauses for TIME and TIMESTAMP type: 
+  {t `hh:mm:ss'} and {ts `yyyy-mm-dd hh:mm:ss.f...'}. The fractional seconds (.f...) 
+  portion of the TIMESTAMP can be omitted. For instance,{d '1999-11-01'} and {ts 
+  '3999-03-24 00:59:23.22222'}. You can use PreparedStatement.setDate to set date 
+  columns too.</p>
+<b>5</b><b>. How to handle date range selection, e.g. SELECT * FROM CALLS WHERE 
+START &gt;= '2001-01-01' AND END &lt;= '2002-01-01'</b><br>
+Although the HXTT Text (CSV) supports &quot;SELECT * FROM CALLS WHERE START &gt;= 
+'2001-01-01' AND END &lt;= '2002-01-01'&quot;, but that sql syntax is unadvisable. 
+Please use SQL Escape Syntax, {d `yyyy-mm-dd'} and {ts `yyyy-mm-dd hh:mm:ss.f...'}, 
+for Date and timestamp type according to JDBC standard. You can learn more about 
+Escape Syntax at file:///yourdriver|/jdk1.2/docs/guide/jdbc/spec/jdbc-spec.frame11.html 
+. You should use &quot;select * from calls where start&gt;={d '2001-01-01'} and 
+end &lt;={d '2002-01-01'}&quot;.
+<p><b>6. Can {d '2999-11-21'}={ts '2999-11-21 23:22:20.3335'} and {t '23:22:20'}={ts 
+  '1999-01-01 23:22:20.333'}?</b><br>
+  Supports.</p>
+<p><b>7. I think this one is for use functions {fn abs(TEST.int1)}</b><br>
+  You can use abs(TEST.int1) too. HXTT Text (CSV) supports more than 230 functions.</p>
+<p><b>8. Update table_name set (fieldname1=X, fieldname2=X2, ....) where primary_index='blah' 
+  throws a parse exception.</b><br>
+  You should use &quot;update table_name set fieldname1=X, fieldname2=X2, .... 
+  where primary_index='blah'&quot;.</p>
+<p><b>9. How to delete all deleted records permanently?</b><br>
+  &quot;PACK TABLE [IF EXISTS] table_name&quot; will pack database. <br>
+  &quot;TRUNCATE TABLE [IF EXISTS] table-name&quot;
+ will zap database.<br>
+  </p>
+<p></p>
+<p><A name=index>Index Questions</a></p>
+<p><b>1. How to rebuilding index in case of corrupted index?</b><br>
+  REINDEX {ALL | indexFileName[,indexfileName2,...]} ON table-name</p>
+<p><b>2. I receive 1 record back, however there should be 8 records returned.My 
+  SQL is &quot;SELECT * FROM Schshift@brian WHERE PSCHED='0001092478'&quot;</b><br>
+  You should have a UNIQUE index restriction on your PSCHED column in your index 
+  file. You should use &quot;CREATE INDEX PSCHED on Schshift (PSCHED)&quot;, not 
+  &quot;CREATE INDEX PSCHED on Schshift (PSCHED UNIQUE)&quot;. Then you can get 
+  all ten records. Text driver will use index to speed up the query which 
+  contains some index expressions.</p>
+<p><b>3. We tried to set a PRIMARY KEY constraint with: create unique index PROVA 
+  on PROVA (COD)</b><br>
+  You should try &quot;CREATE INDEX prova ON prova (cod PRIMARY KEY).</p>
+<p><b>4. I have a table that lists an index using: STR(ClassLink,4,0)+STR(StuLink,5,0) 
+  as the column_name. I want to join it to another table that has an index that 
+  uses the same columns... What should the join statement look like in order to 
+  take advantage of the indexes?</b><br>
+  For instance, you can use &quot;select * from ACLS3295,AGRD3295 where STR(ACLS3295.ClassLink,4,0)+STR(ACLS3295.StuLink,5,0)='1234abcde' 
+  and STR(AGRD3295.ClassLink,4,0)+STR(AGRD3295.StuLink,5,0)='5678abcde'&quot;, 
+  or &quot;select * from ACLS3295 as a,AGRD3295 as b where STR(a.ClassLink,4,0)+STR(a.StuLink,5,0)='1234abcde' 
+  and STR(b.ClassLink,4,0)+STR(b.StuLink,5,0)='5678abcde'&quot;.</p>
+<p></p>
+<p><a name=performance>Performance Questions</a></p>
+<p><b>1. What is the most efficient methodto insert records in a table, to use 
+  an updatable RecordSet or to use a PreparedStatement?</b> <br>
+  PreparedStatement is smally quicker than updatable RecordSet. An updatable RecordSet 
+  is quicker than PreparedStatement if you insert into more than 200 columns with 
+  constant values. It can only cope with constant values. PreparedStatement can 
+  cope with complicated expressions so that you can insert timestamp, function, 
+  ResultSet, and so on.
+  </p>
+<p><b>2. &quot;select count(*) from table&quot; are worked a long time for large 
+  tables.</b><br>
+  You should use &quot;select reccount() from table&quot; to get the number of 
+  records. Count(*) sums always up all records except deleted row.</p>
+<p></p>
+<p></p>
+<p></p>
+<p><b>3. Are there any data row count, data volume, memory minimums, maximums 
+  imposed when using the HXTT Text (CSV)?</b><br>
+  No limitation. The HXTT Text (CSV) supports to join query big databases with DISTINCT, 
+  GROUP BY, and ORDER BY.</p>
+<p><b>4. > Is there a scenario possible where we store frequently accessed 
+temporary data in memory-only tables (as a cache) and use these for query's*_mixed _*with real HXTT Text (CSV) tables?</b><br>
+      _memory_ is a speical catalog name for memory-only database. Through _memory_ catalog, memory-only database is visible for all applications in the same JVM. For instance, in an embedded connection, you can use create table _memory_.abc (a char(10));insert into _memory_.abc values(333);select * from _memory_.abc, test where abc.a=test.b;drop table _memory_.abc; to do the same things.</p>
+<p></p>
+<p><a name=concurrence>Concurrence Questions</a></p>
+<p><b>1. Does HXTT Text (CSV) support multi-user access?</b><br>
+  The HXTT Text (CSV) supports multi-user access, record lock, and table lock.</p>
+<p><b>2. Is there any way to lock/unlock record programatically.</b><br>
+  We have provided a _LockFlag_ virtual column as row lock flag. You can know it from <a href=advanced.html#lockFlag>Set Record Lock Manually</a>. </p>
+<p></p>
+<p><A name=internationalization>Internationalization Questions</a></p>
+<p><b>1. Can the HXTT Text (CSV) support Czech MS - DOS 895?</b></p>
+<p>The HXTT Text (CSV) supports all codepage, multilingual collation sequence, and unicode 
+  character set. Cp895(Czech MS - DOS 895), Cp620(Polish MS - DOS 620) and Mazovia 
+  are extra supported although JVM doesn't support those.</p>
+<p><b>2. Do you have a solution for character translation to the right encoding?</b><br>
+  The HXTT Text (CSV) supports CharacterEncoding. Please use charSet property.</p>
+<pre>
+//Default: null
+//You can find a Supported Encodings list of files:///yourdriver/jdk1.2/docs/guide/internat/encoding.doc.html
+//Extra supports:
+// Cp895 is supported by HXTT Text (CSV) driver. //Czech MS - DOS 895
+// Cp620 is supported by HXTT Text (CSV) driver. //Polish MS - DOS 620
+// Mazovia is supported by HXTT Text (CSV) driver. //Polish 
+Properties properties=new Properties();
+properties.setProperty("charSet","sv_SE");
+Connection con = DriverManager.getConnection(url,properties);
+</pre>
+<p><b>3. While reading encrypted data in a Text file using u'r parser 
+  in java. The data retreived is different from the data in the Text 
+  file, certain characters are read as ? marks.( the encryption is done using 
+  ASCII values ).</b><br>
+  You can use ResultSet.getBytes(int columnIndex), not ResultSet.getString(int 
+  columnIndex) and ResultSet.getObject(int columnIndex), to get your encrypted 
+  data, since your encrypted data is binary stream.</p>
+<p><b>4. When they insert accented characters, it comes out different at the Java 
+  end. There seem to be some character set conversion problems. Is there a way 
+  to solve that?</b><br>
+  You can use ResultSet.getBytes() and ResultSet.setBytes() to avoid CharacterEncoding.</p>
+<p></p>
+<p><A name=interoperability>Interoperability Questions</a></p>
+<p><b>1. How to set up HXTT Text (CSV) with Tomcat4.1 as PoolableConnection?</b><br>
+  This sample shows three PoolableConnections ways through Database Connection 
+  Pool (DBCP) Configurations and JNDI Resources( You should read <a href=http://jakarta.apache.org/tomcat/tomcat-4.1-doc/jndi-datasource-examples-howto.html>JNDI 
+  Datasource HOW-TO</a> and <a href=http://jakarta.apache.org/tomcat/tomcat-4.1-doc/jndi-resources-howto.html>JNDI 
+  Resources HOW-TO</a> also.):<br>
+  In server.xml:<br>
+</p>
+<pre>
+&lt;Context path="" docBase="ROOT" debug="5" reloadable="true" crossContext="true"&gt;
+
+    &lt;Resource name="jdbc/testtextPool1" auth="Container" type="javax.sql.DataSource"/&gt;	
+	&lt;ResourceParams name="jdbc/testTextPool1"&gt;
+		&lt;parameter&gt;
+			&lt;name&gt;factory&lt;/name&gt;
+			&lt;value&gt;org.apache.commons.dbcp.BasicDataSourceFactory&lt;/value&gt;
+		&lt;/parameter&gt;
+			
+		&lt;parameter&gt;
+			&lt;name&gt;maxActive&lt;/name&gt;
+			&lt;value&gt;50&lt;/value&gt;
+		&lt;/parameter&gt;
+	
+		&lt;parameter&gt;
+			&lt;name&gt;maxIdle&lt;/name&gt;
+			&lt;value&gt;10&lt;/value&gt;
+		&lt;/parameter&gt;
+	
+		&lt;parameter&gt;
+			&lt;name&gt;maxWait&lt;/name&gt;
+			&lt;value&gt;10000&lt;/value&gt;
+		&lt;/parameter&gt;
+	
+		&lt;parameter&gt;
+			&lt;name&gt;username&lt;/name&gt;
+			&lt;value&gt;&lt;/value&gt;
+		&lt;/parameter&gt;
+		
+		&lt;parameter&gt;
+			&lt;name&gt;password&lt;/name&gt;
+			&lt;value&gt;&lt;/value&gt;
+		&lt;/parameter&gt;
+	
+		&lt;parameter&gt;
+			&lt;name&gt;driverClassName&lt;/name&gt;
+			&lt;value&gt;com.hxtt.sql.text.TextDriver&lt;/value&gt;
+		&lt;/parameter&gt;	
+		
+		&lt;parameter&gt;
+			&lt;name&gt;url&lt;/name&gt;	
+			&lt;value&gt;jdbc:text:///d:/textfiles&lt;/value&gt;
+		&lt;/parameter&gt;
+    &lt;/ResourceParams&gt;
+
+    &lt;Resource name="jdbc/testTextPool2" auth="Container" type="com.hxtt.sql.HxttConnectionPoolDataSource"/&gt;	
+	&lt;ResourceParams name="jdbc/testTextPool2"&gt;
+		&lt;parameter&gt;
+			&lt;name&gt;factory&lt;/name&gt;
+			&lt;value&gt;org.apache.naming.factory.BeanFactory&lt;/value&gt;
+		&lt;/parameter&gt;
+			
+		&lt;parameter&gt;
+			&lt;name&gt;url&lt;/name&gt;
+			&lt;value&gt;jdbc:text:///d:/textfiles&lt;/value&gt;
+		&lt;/parameter&gt;	
+	
+		&lt;parameter&gt;&lt;name&gt;username&lt;/name&gt;&lt;value&gt;&lt;/value&gt;&lt;/parameter&gt;		
+		&lt;parameter&gt;&lt;name&gt;password&lt;/name&gt;&lt;value&gt;&lt;/value&gt;&lt;/parameter&gt;		
+		&lt;parameter&gt;&lt;name&gt;host&lt;/name&gt;&lt;value&gt;&lt;/value&gt;&lt;/parameter&gt;
+		&lt;parameter&gt;&lt;name&gt;port&lt;/name&gt;&lt;value&gt;8029&lt;/value&gt;&lt;/parameter&gt;
+
+    &lt;/ResourceParams&gt;
+
+
+    &lt;Resource name="jdbc/testTextPool3" auth="Container" type="com.hxtt.sql.HxttConnectionPoolDataSource"/&gt;	
+	&lt;ResourceParams name="jdbc/testTextPool3"&gt;
+		&lt;parameter&gt;
+			&lt;name&gt;factory&lt;/name&gt;
+			&lt;value&gt;com.hxtt.sql.HxttObjectFactory&lt;/value&gt;
+		&lt;/parameter&gt;	
+		&lt;parameter&gt;
+			&lt;name&gt;url&lt;/name&gt;
+			&lt;value&gt;jdbc:text:///d:/textfiles&lt;/value&gt;
+		&lt;/parameter&gt;	
+	
+		&lt;parameter&gt;&lt;name&gt;username&lt;/name&gt;&lt;value&gt;&lt;/value&gt;&lt;/parameter&gt;		
+		&lt;parameter&gt;&lt;name&gt;password&lt;/name&gt;&lt;value&gt;&lt;/value&gt;&lt;/parameter&gt;		
+		&lt;parameter&gt;&lt;name&gt;host&lt;/name&gt;&lt;value&gt;&lt;/value&gt;&lt;/parameter&gt;
+		&lt;parameter&gt;&lt;name&gt;port&lt;/name&gt;&lt;value&gt;8029&lt;/value&gt;&lt;/parameter&gt;
+    &lt;/ResourceParams&gt;
+
+&lt;/Context&gt;
+</pre>
+<p>Then you can use the below code to test those PoolableConnections:</p>
+<pre>
+	Context initContext = new InitialContext(); 
+	Context envContext = (Context)initContext.lookup("java:/comp/env"); 
+	
+	DataSource ds1 = (DataSource)envContext.lookup("jdbc/testTextPool1"); 
+	Connection conn1 = ds1.getConnection();
+	out.println("testTextPool1 OK:)&lt;br/&gt;");
+	Statement stmt1 = conn1.createStatement();
+	ResultSet rs1 = stmt1.executeQuery("select * from test");
+	if(rs1.next())
+	   out.println(rs1.getString(1)+":)&lt;br/&gt;");
+	rs1.close();  
+	stmt1.close();
+	conn1.close(); 
+	
+	
+	DataSource ds2 = (DataSource)envContext.lookup("jdbc/testTextPool2"); 
+	Connection conn2 = ds2.getConnection();
+	out.println("testTextPool2 OK:)&lt;br/&gt;");
+	Statement stmt2 = conn2.createStatement();
+	ResultSet rs2 = stmt2.executeQuery("select * from test");
+	if(rs2.next())
+	   out.println(rs2.getString(1)+":)&lt;br/&gt;"); 
+	rs2.close();  
+	stmt2.close();
+	conn2.close();
+	
+	DataSource ds3 = (DataSource)envContext.lookup("jdbc/testTextPool3"); 
+	Connection conn3 = ds3.getConnection();
+	out.println("testTextPool3 OK:)&lt;br/&gt;");
+	Statement stmt3 = conn3.createStatement();
+	ResultSet rs3 = stmt3.executeQuery("select * from test");
+	if(rs3.next())
+	   out.println(rs3.getString(1)+":)&lt;br/&gt;"); 
+	rs3.close();  
+	stmt3.close();
+	conn3.close();
+</pre>
+<p>If you use org.apache.commons.dbcp.BasicDataSource, but get "Cannot create 
+  PoolableConnectionFactory" Error, you should check your commons-pool-1.x.jar 
+  and commons-dbcp-1.*.jar file in $TOMCAT/common/lib directory to see whether 
+  two files have the same version. DBCP v1.2 requires Pool v1.2 so that you should 
+  update Pool v1.1 from the tomcat website.</p>
+<p>If you wish to add more Connection properity, you should use connectionProperties, 
+  for instance:</p>
+<p> &lt;parameter&gt;<br>
+  &lt;name&gt;connectionProperties&lt;/name&gt;<br>
+  &lt;value&gt;charSet=Cp737&lt;/value&gt;<br>
+  &lt;/parameter&gt;</p>
+<p></p>
+<p><b>2. How to set up HXTT Text (CSV) with vqServer 1.9.55 as web server?</b><Br>
+  The key is to use an absolute path as Java libraries' location, and restart 
+  vqServer after modified Java libraries.<br>
+  For instance, your vqServer is installed at C:\vqServer\.<br>
+  1. Please use http://yourhost:9090/ to visit your administration server.<br>
+  2. Click on Java libraries in the vqServer control centre menu (http://yourhost:9090/admin?action=libraries&amp;serial=14)<br>
+  3 Click New library (http://yourhost:9090/admin?lib=New_library&amp;action=edit)<br>
+  4. Enter C:\vqServer\classes\Text_JDBC20.jar as location value, Text 
+  Driver as Description value, then click OK button.<br>
+  5. Please copy Text_JDBC20.jar into C:\vqServer\classes directory.<br>
+  6. Please copy ex01.class into C:\vqServer\servlets\servlets <br>
+  7. Stop and restart vqServer<br>
+  8. Please use http://yourhost/servlet/yourServlets to get your result.</p>
+<p><b>3. How to set up HXTT Text (CSV) with Coldfusion MX 6.1 Application Server?</b><br>
+  For instance,your Coldfusion MX is installed at C:\CFusionMX\, and wish to use 
+  Text_JDBC30.jar.<br>
+  1. Please copy Text_JDBC30.jar into C:/CFusionMX/wwwroot/WEB-INF/classes/.<br>
+  2. Use http://yourhost:8500/CFIDE/administrator/index.cfm to enter the CFMX 
+  Administrator.<br>
+  3. Go to the "Java and JVM" of Server Settings, http://yourhost:8500/CFIDE/administrator/settings/jvm.cfm 
+  page, and enter the full path, C:/CFusionMX/wwwroot/WEB-INF/classes/Text_JDBC30.jar, 
+  in the Class Path. Then, click "Submit Changes".<br>
+  4. Restart the CFMX Service.<br>
+  5. Please go back to the administrator page, and go to the &quot;Data Sources&quot; 
+  of Data &amp; Services, http://yourhost:8500/CFIDE/administrator/datasources/index.cfm 
+  page, and enter the name for the new datasource, for instance "TextTest", 
+  and select "Other" for the driver. Then Click "Add".<br>
+  6. Enter the datasource information. JDBC URL is always in the format jdbc:text:[//[host:port]]/[DatabasePath], 
+  for instance jdbc:text:/c:/data. You can set more connection properties in your JDBC URL, for instance:  jdbc:text:/c:data?delayedClose=15;maxCacheSize=6144;lockTimeout=2000; . Driver class is always com.hxtt.sql.text.TextDriver. Driver name is used to identify the driver in the datasources view, and you 
+  can use Text. Username and password are not required. They can also 
+  be specified in the cfquery tag (but datasource verification will fail if you 
+  don't enter them). Description is not required.<br>
+  7. Lastly, please press "Submit" to finalize the entered data.<br>
+  8. You can find edit.cfm and edit_action.cfm sample in demo pacakge.<br>
+</p>
+
+<p><b>4. HXTT Text (CSV) with If you run ColdFusion (Tomcat, or alexandria sw and tanuki sw wrapper) on Windows 2000 and 
+  Windows XP Pro does not work on mapped drives.</b> </p>
+ <font color=red>Note: If you're using a database file through a UNC path or a mapped drive of Windows, there is a Windows Security restriction. If you run ColdFusion (Tomcat, or tanuki sw wrapper) as a service on Windows, it operates by default as System, and cannot access directories on a remote system or mapped drive; to resolve this issue, do not run ColdFusion (Tomcat, or tanuki sw wrapper) using the local system account.</font><br>
+<p>The service(For instance, ColdFusion MX Application Server, ColdFusion MX 7 Application Server, or Apache Tomcat) built by ColdFusion (Tomcat, or tanuki sw wrapper) can not access the share directory 
+  at other machine by default. But you can do as follows to solve this problem:<br>
+  1. Right click the service built by ColdFusion (Tomcat, or tanuki sw wrapper) in service manager, 
+  and click the property menu.<br>
+  2. On the open window,select the login tab, click this account radio box, and 
+  click the browse button.<br>
+  3. Select the administrator account(it seems that you should select the administrator 
+  account), input the correct password in the password textbox and confirm password 
+  textbox.<br>
+  4. Restart this service, you can find this service can access the share directory 
+  at other machine.</p>
+<p><b>5. How to resolve 'DataSet has no unique row identifiers.' issue in JBuilder's 
+  QueryDataSet?</b><br>
+  You can use _rowid_, a virtual column to avoid that issue, For instance: </p>
+<pre>
+        //...
+        queryDataSet = new QueryDataSet();
+		//...
+		queryDataSet.setMetaDataUpdate(MetaDataUpdate.ALL-MetaDataUpdate.ROWID-MetaDataUpdate.TABLENAME);
+
+        queryDataSet.setQuery(new QueryDescriptor(database, "select _rowid_,* from test", null, true,
+                Load.ALL));
+        queryDataSet.open();
+
+        queryDataSet.setTableName("test");
+        queryDataSet.setRowId("_rowid_", true);
+		//...
+</pre>
+<p><b>6. How to set HXTT Text (CSV) with WebSphere Application Server?</b><br>
+  You can download a pdf guide from <a href=http://www.hxtt.com/test/websphere_sample.pdf>here</a>.</p>
+<p><b>7. How to set HXTT Text (CSV) with Hibernate?</b><br>
+  You should download support package and sample from <a href=http://www.hxtt.com/hibernate.html>here</a>.</p>
+<p><b>8. How to set HXTT Text (CSV) Data Source with Oracle Application Server 10G?</b><br>
+  You should read guide at <a href=http://www.hxtt.com/test/oracleappserv/oracle10g.htm>Oracle Application Server 10G(v10.1.3)</a> and <a href=http://www.hxtt.com/test/oracleappserv1012/>Oracle Application Server 10G(v10.1.2.02)</a>.</p>
+
+<p><b>9. How to set HXTT Text (CSV) Data Source with JBoss AS 7.0.2?</b><br>
+    After downloading HXTT Text (CSV) driver jar file. just move the HXTT Text (CSV) driver jar file into Jboss 7 installation directory under standalone/deployments (jboss-as-web-7.0.2.Final/standalone/deployments).<br>
+    Restart your jboss server<br>
+    Then go to the url and type http://localhost:8080/<br>
+    click Administration console.<br>
+In Jboss  Administration console you can press Add button of Datasource Configurations. step 1/3 Datasource Attributes: enter datasource name(testtext) and jndi name(testtext) then click Next button. step 2/3 JDBC Driver: select HXTT Text (CSV) driver jar file. click Next Nutton. Step 3 Connection Settings:  enter connection URL (jdbc:text:////data) , Username(null) and Password(null). finally click Done button.<br>
+
+<p><b>10. How to set HXTT Text (CSV) Data Source with Railo 3.3.1 Express?</b><br>
+    After downloading HXTT Text (CSV) driver jar file. just move the HXTT Text (CSV) driver jar file into Railo 3 installation directory under /lib/ext/railo-server/context/library (railo-3.3.1.000//lib/ext/railo-server/context/library).<br>
+    Restart your Railo server<br>
+    Then go to the url and type http://localhost:8888/<br>
+    click Railo Server Administrator (or type http://localhost:8888/railo-context/admin/server.cfm).<br>
+In Services - Datasource of Railo Server Administrator console, you can Create new datasource: step 1/2 Name: enter datasource name(testtext) and Type(Other - JDBC driver) then click create button. step 2/2 enter Class(com.hxtt.sql.text.TextDriver),  DSN(jdbc:text:////data), Username(null) and Password(null). finally click create button.<br>
+
+<p><b>11. Where's JDBC Connection Pool Templates for GlassFish?</b><br>
+MS Access template is at <a href="http://www.hxtt.com/test/microsoft_access_type4_datasource.xml" >http://www.hxtt.com/test/microsoft_access_type4_datasource.xml</a><br>
+Cobol data file template is at <a href="http://www.hxtt.com/test/cobol__type4_datasource.xml" >http://www.hxtt.com/test/microsoft_access_type4_datasource.xml</a><br>
+MS Excel template is at <a href="http://www.hxtt.com/test/microsoft_excel_type4_datasource.xml" >http://www.hxtt.com/test/microsoft_excel_type4_datasource.xml</a><br>
+Corel Paradox template is at <a href="http://www.hxtt.com/test/paradox_type4_datasource.xml" >http://www.hxtt.com/test/paradox_type4_datasource.xml</a><br>
+Xbase template is at <a href="http://www.hxtt.com/test/dbf_type4_datasource.xml" >http://www.hxtt.com/test/dbf_type4_datasource.xml</a><br>
+CSV template is at <a href="http://www.hxtt.com/test/csv_type4_datasource.xml" >http://www.hxtt.com/test/csv_type4_datasource.xml</a><br>
+Text template is at <a href="http://www.hxtt.com/test/text_type4_datasource.xml" >http://www.hxtt.com/test/text_type4_datasource.xml</a><br>
+XML template is at <a href="http://www.hxtt.com/test/xml_type4_datasource.xml" >http://www.hxtt.com/test/text_type4_datasource.xml</a><br>
+</p>
+
+
+<p><b>12. Where's the support package for MySQL Migration?</b><br>
+The support package for MySQL GUI Tools 5.0 is at <a href="http://www.hxtt.com/test/mysql_migration.zip">http://www.hxtt.com/test/mysql_migration.zip</a>.<br>
+The support package for MySQL Migration Toolkit v1.0.21 is at <a href="http://www.hxtt.com/test/mysql_migration1.0.21.zip">http://www.hxtt.com/test/mysql_migration1.0.21.zip</a>.<br>
+The support package for MySQL Migration Toolkit v1.0.20 is at <a href="http://www.hxtt.com/test/mysql_migration1.0.200.zip">http://www.hxtt.com/test/mysql_migration1.0.20.zip</a>.<br>
+</p>
+
+<p><b>13. How to set HXTT Text (CSV) with Apache EmpireDB?</b><br>
+  You should download support package from <a href=http://www.hxtt.com/test/empiredbsupport.jar>here</a>.</p>
+<p><b>13. Does HXTT Text (CSV) driver support XA connections ? </b><br>
+  It provides an experimental com.hxtt.sql.HxttXADataSource .</p>
+
+<p><b>14. How to set HXTT Text (CSV) into my projects maven pom.xml.?</b><br>
+For instance,
+<pre>
+Once you've downloaded the JAR just add it to your computer repository with:
+mvn install:install-file -DgroupId=com.hxtt.sql.text -DartifactId=textjdbc4 \
+     -Dversion=v6.0 -Dpackaging=jar -Dfile=Text_JDBC40.jar -DgeneratePom=true
+The last parameter for generating a POM will save you from pom.xml warnings. 
+
+Include the new dependency by modifying your project��s pom.xml. Add the following dependency:
+&lt;dependency&gt;
+    &lt;groupid&gt;com.hxtt.sql.text&lt;/groupid&gt;
+    &lt;artifactid&gt;textjdbc4&lt;/artifactid&gt;
+    &lt;version&gt;v6.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+Save the pom.xml file and build the project to make sure no errors exist. 
+</pre>
+
+
+
+<p><b>15. How to set HXTT Text (CSV) Data Source with JBoss Application Server 4.0.1?</b><br>
+For instance,
+<pre>
+&lt;datasources&gt;
+  &lt;local-tx-datasource&gt;
+    &lt;jndi-name&gt;TestData&lt;/jndi-name&gt;
+    &lt;connection-url&gt;jdbc:text:////data&lt;/connection-url&gt;
+    &lt;driver-class&gt;com.hxtt.sql.text.TextDriver&lt;/driver-class&gt;
+    &lt;connection-property name="delayedClose"&gt;-1&lt;/connection-property&gt;
+    &lt;user-name/&gt;
+    &lt;password/&gt;
+    &lt;min-pool-size&gt;5&lt;/min-pool-size&gt;
+    &lt;max-pool-size&gt;20&lt;/max-pool-size&gt;
+    &lt;idle-timeout-minutes&gt;5&lt;/idle-timeout-minutes&gt;
+  &lt;/local-tx-datasource&gt;
+&lt;/datasources&gt;
+
+</pre>
+
+<p><b>16. How to set HXTT Text (CSV) database dialect with EclipseLink of Glassfish?</b><br>
+  You should download support package and sample from <a href=http://www.hxtt.com/eclipselink.html>here</a>.</p>
+
+<p><b>17. How to set HXTT Text (CSV) database dialect with TopLink of Glassfish?</b><br>
+  You should download support package and sample from <a href=http://www.hxtt.com/toplink.html>here</a>.</p>
+
+<p><b>18. How to set HXTT Text (CSV) database in DBeaver?</b><br>
+1. Create a JDBC Data Source for HXTT Text (CSV) Data<br>
+    Open the DBeaver application, in the Databases menu, click the Driver Manager item. Click New to open the Create New Driver form.<br>
+    In the Driver Name box, enter a user-friendly name for the driver, for isntance, testText.<br>
+    In the Class Name box, enter com.hxtt.sql.text.TextDriver.<br>
+    In the URL Template box, enter jdbc:text: .<br>
+    In the Category box, enter Text.<br>
+
+    In the Libraries panel, click Add File so that load the driver JAR (for instance, Text_JDBC40.jar) in DBeaver.<br>
+    In the Open driver library dialog that appears, select the Text_JDBC40.jar file.<br><br>
+ 2. Create a Connection to HXTT Text (CSV) Data<br>
+    In the Databases menu, click New Connection item.<br>
+    In the Create new connection wizard that results, select Text, then testText.<br>
+    On the next page of the wizard, click the Driver properties tab.<br>
+    Add new property, Property Name is database, Value is the path of your database file, for instance, d:/test/text . <br>
+    Click Finish button.<br>
+</p>
+
+<p><b>19. How to set HXTT Text (CSV) database in JasperSoft Studio?</b><br>
+	1. 	right-click a project in the Project Explorer and select New > Data Adapter to open the Data Adapters Wizard.<br>
+	2. 	In the DataAdapter File window, choose the project where you want to save the data adapter file. This should be the project that contains the report(s) you want to use with your data adapter.<br>
+	3. 	Enter a file name for your adapter and click Next.<br>
+	4. 	Select Database JDBC Connection as the data adapter typeand click Next.<br>
+	5. 	Enter a name for your adapter. This name is used when you select an adapter for a report.<br>
+	6. 	Enter com.hxtt.sql.text.TextDriver for JDBC Driver<br>
+	7. 	Enter jdbc:text:/yourDatabasePath for JDBC Driver<br>
+        8.  	Click Driver Classpah tab.<br>
+        9.  	Click Add button to select the Text_JDBC40.jar file.<br>
+	10. 	Click Finish to create the adapter.<br>
+
+The adapter is saved as an XML file in the project location you selected.<br>
+</p>
+
+<p><b>20. How to set HXTT Text (CSV) database in Jasper Server?</b><br>
+First, copy the Driver to the JasperReports Server Classpath<br>
+Now you need to copy the driver (the Text_JDBC40.jar file) to the classpath of your application server to enable JasperServer to find it.<br>
+In general it's best to copy the driver to the application server's shared library location. Refer to your application server documentation for exact locations.<br>
+For example in a JapserServer Bundle install on windows this is located at: C:/Jaspersoft/jasperreports-server-cp-7.1.0/apache-tomcat/lib <br>
+After these modifications you will need to restart the application server for this settings to take effect.
+For information on restarting your server see Chapter 3 of the JasperReport Server Install Guide (is located on the /docs folder of your Jasper Server install path)<br>
+
+	1. 	Log into JasperReport Server from your browser using the jasperadmin or superuser account (e.g.: http://localhost:8080/jasperserver-pro)<br>
+	2. 	Go to View | Repository, Select a folder where you want to create your Data Source (e.g.: /Data Sources). Right click on the folder name in the repository view and from the context menu select called Add Resource and then click on Data Source. Now you are presented with a screen to enter the settings of your Data Source connection<br>
+	3. 	Type choose JDBC Data Source. JDBC Driver option choose Other... .<br>
+	4. 	JDBC Driver (required): enter com.hxtt.sql.text.TextDriver <br>
+	5. 	URL (required): enter jdbc:text:/yourDatabasePath .<br>
+        6.  	Click Save button.<br>
+        7.  	Data Source Name (required): enter a user-friendly name for the driver, for isntance, testText.<br>
+	8. 	Click Save button.<br>
+
+</p>
+
+<p></p>
+<p></p>
+
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  
+   <bean id="details"  class="com.lp.beans.PersonDetails" >
+       <property name="name"  value="Raja"/>
+       <property name="age"  value="22"/>
+       <property name="gender" value="M"/>
+       <property name="marks" value="87,88,85,89,86,83"/>
+       <property name="subjects" value="MIL,SLE,TLH,Math,Science,Social" />
+       <property name="dob"  value="12/15/97" />
+       <property name="fb"  value="http:/FaceBook.com/Raja" />
+       <property name="link"  value="http:/google.com" />
+       <property name="img"  value="f:/lp/image" />
+   </bean>
+   
+  
+  
+</beans>

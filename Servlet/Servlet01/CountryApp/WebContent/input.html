@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <h1 style="color:brown;text-align:center">Welcome to Our PAge</h1>
+  <br>
+  <br>
+  <br>
+ <form name="frm"  action="conturl" method="post">
+   Select Country :: <select name="country" onchange="send()" >
+                      <option value="-1">--Select--</option>
+                      <option value="0">India</option>
+                      <option value="1">Pakistan</option>
+                      <option value="2">china</option>
+                      <option value="3">Australia</option>
+                      </select>
+ </form>
+ 
+ <script language="javascript">
+       function send(){
+    	   frm.submit();
+       }
+ 
+ </script>
+</html>

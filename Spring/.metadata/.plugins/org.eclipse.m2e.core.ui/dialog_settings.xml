@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<item value="All Catalogs" key="catalog"/>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="E:\Spring\IOCProj37-ICCScoreWebApp"/>
+			<item value="E:\Spring\IOCProj26-NestedBean-AC-PropertiesFile\src\main\java\com\lp\cfgs\Bussiness-Layed.xml"/>
+			<item value="E:\Spring\IOCProj10-TightCoupling\pom.xml"/>
+			<item value="E:\Spring\IOCProj8-InnerBeanTest\pom.xml"/>
+			<item value="E:\Spring\IOCProj6-ArrayANDList\src\main\java\com\lp\beans\TeacherSubMapTest.java"/>
+			<item value="E:\Spring\IOCProj6-miniProject\src\main\java\com\lp\ClientTest\RealTimeLayedprojTest.java"/>
+			<item value="E:\Spring\IOCPROJ5\pom.xml"/>
+			<item value="E:\Spring\IOCProj2-SetterMethodTest\src\com\Lp\test\BeanTest.java"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+			<item value="lip.IOCProj37_ICCScoreWebApp"/>
+			<item value="com.lp.test"/>
+			<item value="com.lp.beans"/>
+			<item value="lip.IOCProj24_p_c_NameSpaceTest"/>
+			<item value="nit.IOCProj7_ConstructorInjection"/>
+			<item value="com.lp.ClientTest"/>
+			<item value="com.nt.LC"/>
+			<item value="nit.lc"/>
+			<item value="nit.kk"/>
+			<item value="com.nt.LLP"/>
+			<item value="com.nt.LP"/>
+			<item value="com.nt.lp"/>
+		</list>
+		<list key="groupId">
+			<item value="lip"/>
+			<item value="nit"/>
+		</list>
+		<list key="artifactId">
+			<item value="IOCPrOJ38-Cricbuzz"/>
+			<item value="IOCProj37-ICCScoreWebApp"/>
+			<item value="IOCTest"/>
+			<item value="IOCProj31-DependencyLookup"/>
+			<item value="IOcP"/>
+			<item value="mn"/>
+			<item value="IOCProj27-I18nWithCoreBased"/>
+			<item value="IOCProj24-p_c-NameSpaceTest"/>
+			<item value="IOCProj22-NestedBean"/>
+			<item value="IOCPrpj17-DependencyCheck-Simple"/>
+			<item value="IOCProj17-DependencyCheck-Simple"/>
+			<item value="IOCPRoj11-AutoWiring"/>
+			<item value="IOCProj11-AutowiringByName"/>
+			<item value="IOCProj11-AutoWiringByName"/>
+			<item value="IOCProject-Inner"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+</section>

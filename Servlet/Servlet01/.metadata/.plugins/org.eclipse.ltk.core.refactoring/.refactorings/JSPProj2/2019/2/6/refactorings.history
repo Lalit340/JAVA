@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.lp.pages&apos; to &apos;JSPSecondProj/src&apos;&#x0D;&#x0A;- Original project: &apos;JSPProj2&apos;&#x0D;&#x0A;- Destination element: &apos;JSPSecondProj/src&apos;&#x0D;&#x0A;- Original element: &apos;JSPProj2/src/com.lp.pages&apos;" description="Copy package" destination="=JSPSecondProj/src" element1="/src&lt;com.lp.pages" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1549187050352" version="1.0"/>
+</session>

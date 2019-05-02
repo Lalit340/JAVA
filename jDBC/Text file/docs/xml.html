@@ -1,0 +1,166 @@
+<html><head><TITLE>xml.html - HXTT Text (CSV) JDBC Drivers for raw data, flat text, CSV file, TSV file, PSV file, fixed-length, and variable-length binary file v6.0</TITLE><meta name="keywords"  content="Text, JDBC, jdbc drivers, CSV, HXTT"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<p><font size="+1"><b>Chapter 11. XML Support</b></font></p>
+<p><b>Index</b>: </p>
+<ol>
+   <li><a href="#declaration">Declaration of XML Types</a></li>
+   <li><a href="#function">XML Functions</a></li>
+   <li><a href=#sample>XML sample</a></li>
+
+
+ </ol>
+
+
+<p><A name=operator>Declaration of XML Types</a></p>
+<pre>
+An array data type is named by appending square brackets ([]) to the data type name of the array elements, and all the elements are of the same data type.
+CREATE TABLE if not exists  book2018 (
+    item            varchar(16),
+    pay_by_month  double[12],
+    schedule        string[][]
+);
+</pre>
+
+<p>
+
+
+</p>
+    
+
+
+
+<p><A name=function>XML Functions</a></p>
+<ol>
+    <li>XMLPARSE ( { DOCUMENT | CONTENT } string1): Returns a value of type xml.
+         If string1 resolves to null, then the function returns null.
+
+    If you specify DOCUMENT, then string1 must resolve to a singly rooted XML document.
+
+    If you specify CONTENT, then string1 must resolve to a valid XML value.
+
+    </li>
+    
+    <li>XMLSERIALIZE ( { DOCUMENT | CONTENT } value_expr [[AS] type]): Returns a string or LOB containing the contents of value_expr.
+
+    If you specify DOCUMENT, then the value_expr must be a valid XML document.
+
+    If you specify CONTENT, then the value_expr need not be a singly rooted XML document. However it must be valid XML content.
+
+    The data type specified can be a string type (VARCHAR) or CLOB . The default is CLOB.
+
+
+    </li>
+    
+    <li>XMLCOMMENT(string1): Returns an XML comment with the specified text as content. The text cannot contain "--" or end with a "-" so that the resulting construct is a valid XML comment. If the argument is null, the result is null.
+    </li>
+
+    <li>
+    XMLELEMENT([NAME] name [, XMLATTRIBUTES(value [[AS] attname] [, ... ])] [, content, ...]): Returns an XML element with the given name, attributes, and content.
+    </li>
+    
+    <li>
+    XMLATTRIBUTES(value [[AS] attname] [, ... ]): Returns attribute values.
+    </li>
+
+    <li>
+    XMLFOREST(value [[AS] elementname] [, ... ]): Returns an XML fragment that is the concatenation of these converted arguments.
+    </li>
+
+    <li>XMLCONCAT(expr[,...]): Returns an XML content fragment. Null values are omitted; the result is only null if there are no nonnull arguments.
+    </li>
+
+    <li>
+    XMLPI(NAME name [, value_expr]]): Return an XML processing instruction using name and optionally the evaluated result of value_expr. A processing instruction is commonly used to provide to an application information that is associated with all or part of an XML document. The application uses the processing instruction to determine how best to process the XML document.
+
+The optional value_expr must resolve to a string. If you omit value_expr, then a zero-length string is the default. The value returned by the function takes this form:
+
+Name cannot specify xml in any case combination for identifier, and cannot contain the consecutive characters ?>.
+
+
+ </li>
+
+ 
+ 
+     <li>XMLAGG(expr [order_by_clause]): Returns a collection of XML fragments. Any arguments that return null are dropped from the result.
+    </li>
+
+
+
+</ol>
+    
+    
+    
+
+<p><A name=sample>XML sample</a></p>
+<pre>
+select xmlcomment('hello');
+select xmlcomment('<!--hello-->');
+
+
+select xmlattributes('tom' as name);
+
+SELECT xmlelement(name cat);
+
+SELECT xmlelement(name cat, xmlattributes('tom' as name));
+
+SELECT xmlelement(name cat, xmlattributes('tom' as name),'Tom is ','ca','t');
+
+SELECT xmlelement(name "cat$tom", xmlattributes('Demo for invalid XML  name' as "a&b"));
+
+SELECT xmlelement(name cat, xmlattributes('tom' as name),'Tom is ','ca','t');
+
+SELECT xmlelement(name cat, xmlattributes('tom' as name),xmlelement(name abc),  xmlcomment('test'), xmlelement(name xyz));
+
+SELECT XMLELEMENT("test", XMLELEMENT("test1", XMLATTRIBUTES(1 "test1_attribute"),NULL), XMLELEMENT("test2", XMLATTRIBUTES('' "test2_attribute"),''), XMLELEMENT("test3", XMLATTRIBUTES(NULL "test3_attribute")),':)');
+
+SELECT XMLELEMENT("TEST",  '123',   XMLELEMENT("AA",   XMLATTRIBUTES('1235678' "test_attribute"), XMLELEMENT("BB",  XMLATTRIBUTES('z' "attr",NULL "Go"),  'XXX'),  XMLELEMENT("CC", 'XXX')),     'qwe')
+
+
+SELECT XMLCONCAT(XMLELEMENT("First",'John'), XMLELEMENT("Last", 'Morgan')) AS "Name";
+
+SELECT xmlconcat('<abc/>', '<bar>foo</bar>');
+
+SELECT xmlconcat('<?xml version="1.1"?><foo/>', '<?xml version="1.1" standalone="no"?><bar/>');
+
+
+drop table if exists departments ;
+create table if not exists departments(id int, name varchar(24));
+insert into departments (id,name) values(0,null);
+insert into departments (id,name) values(101,'Accounting');
+
+drop table if exists employees;
+create table if not exists employees(id int auto_increment,firstName varchar(24), lastName varchar(24),salary numeric(12,2),dept_id int);
+insert into employees (firstName,lastName) values('Susan','Baer');
+insert into employees (firstName,lastName,salary,dept_id) values('William','Mavris',20000,101);
+
+SELECT XMLCONCAT(XMLELEMENT("First", e.firstName), XMLELEMENT("Last", e.lastName)) AS "Result"  FROM employees e WHERE e.id <10;
+SELECT XMLELEMENT("Emp", XMLATTRIBUTES(e.id AS "ID", e.lastname),  XMLELEMENT("Dept", e.dept_id),  XMLELEMENT("Salary", e.salary)) AS "Emp Element" from employees e  WHERE e.id = 1;
+SELECT XMLELEMENT("Emp",   XMLFOREST(e.id, e.lastname, e.salary, 'Just a demo' as comment)) "Emp Element" FROM employees e WHERE e.id =2;
+SELECT XMLELEMENT("Emp", XMLATTRIBUTES(employees.id, employees.lastname), XMLELEMENT("Dept", XMLATTRIBUTES(employees.dept_id,(SELECT d.name FROM departments d   WHERE d.id = employees.dept_id) as "Dept_name")), XMLELEMENT("salary", employees.salary)) AS "Emp Element"   FROM employees WHERE employees.id = 2;
+
+SELECT xmlforest('abc' AS foo, 123 AS bar);
+
+SELECT xmlforest(table_name, column_name) FROM information_schema.columns WHERE table_name ilike 'e%';
+
+SELECT xmlpi(name php, 'echo "hello world";');
+SELECT XMLPI(NAME "Order analysisComp", 'imported, reconfigured, disassembled?>') AS "XMLPI";
+
+
+SELECT XMLPARSE(CONTENT '123 ' ) AS PO ;
+SELECT XMLPARSE(CONTENT '<purchaseOrder>123</purchaseOrder>');
+SELECT XMLPARSE(CONTENT '123 <purchaseOrder poNo="12435"> <customerName>Tom Cat</customerName> <itemNo>9876</itemNo> </purchaseOrder>' ) AS PO ;
+
+SELECT XMLPARSE (DOCUMENT '<?xml version="1.0"?><book><title>Manual</title><chapter>...</chapter></book>');
+SELECT XMLPARSE (CONTENT 'abc<foo>bar</foo><bar>foo</bar>');
+SELECT XMLPARSE (CONTENT 'abc<foo>bar</foo><bar>foo</bar>' as varchar);
+
+SELECT XMLSERIALIZE(CONTENT '<Owner>Tom</Owner>');
+/*SELECT XMLSERIALIZE(CONTENT '<Owner>Tom/Owner>');*/
+
+SELECT XMLELEMENT("Department", XMLAGG(XMLELEMENT("Employee", e.id||' '||e.lastname)    ORDER BY lastname))   as "Dept_list"       FROM employees e    WHERE e.dept_id <= 300;
+
+INSERT INTO book2018 (xmlDemo) values(xmlelement(name cat, xmlattributes('tom' as name),'Tom is ','ca','t'));
+select xmlDemo from book2018 where xmlDemo!=null;
+
+
+</pre>
+<div align="center"><font color="#A042FF">Copyright &copy; 2003-2018 Heng Xing Tian Tai Lab | All Rights Reserved. |</font> </div></body></html>
